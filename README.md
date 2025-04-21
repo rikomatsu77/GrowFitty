@@ -132,11 +132,8 @@ https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=0045027
 7.投稿作成
 8.投稿編集
 9.投稿削除
-10.コメント作成
-11.コメント編集
-12.コメント削除
-13.プロフィール詳細
-14.プロフィール編集
+10.プロフィール詳細
+11.プロフィール編集
 
 ## 本リリース
 
@@ -147,6 +144,9 @@ https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=0045027
 5.タグ機能
 6.LINEプッシュ通知
 7.Google認証
+8.コメント作成
+9.コメント編集
+10.コメント削除
 
 ## ■ 機能の実装方針予定
 
