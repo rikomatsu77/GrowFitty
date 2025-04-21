@@ -177,3 +177,7 @@ https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=0045027
 - 認証
 
 　gem devise、Google認証
+
+## 画面遷移図
+
+https://www.figma.com/design/nyig3NgC0ol8JWr83RJxCV/GrowFitty?node-id=0-1&t=FM9r15Dz26505Yq3-1
