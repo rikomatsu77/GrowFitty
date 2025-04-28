@@ -181,3 +181,9 @@ https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=0045027
 ## 画面遷移図
 
 https://www.figma.com/design/nyig3NgC0ol8JWr83RJxCV/GrowFitty?node-id=0-1&t=FM9r15Dz26505Yq3-1
+
+## ER図
+
+dbdiagram.io：https://dbdiagram.io/d/680d95001ca52373f57f695f
+
+[![Image from Gyazo](https://i.gyazo.com/311f8c8c7bfc9f477958de40df306548.png)](https://gyazo.com/311f8c8c7bfc9f477958de40df306548)
