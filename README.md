@@ -186,4 +186,4 @@ https://www.figma.com/design/nyig3NgC0ol8JWr83RJxCV/GrowFitty?node-id=0-1&t=FM9r
 
 dbdiagram.io：https://dbdiagram.io/d/680d95001ca52373f57f695f
 
-[![Image from Gyazo](https://i.gyazo.com/e61873dbc5de9de74ff83beaadb6aac1.png)](https://gyazo.com/e61873dbc5de9de74ff83beaadb6aac1)
+[![Image from Gyazo](https://i.gyazo.com/d711904af86e5e5add4d1501384d4524.png)](https://gyazo.com/d711904af86e5e5add4d1501384d4524)
