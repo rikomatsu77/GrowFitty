@@ -10,6 +10,7 @@ class CreateGrowthStandards < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :growth_standards, [:days_since_birth, :gender, :measurement_type, :percentile], unique: true, name: "index_growth_standards_on_all_keys"
+    add_index :growth_standards, [:days_since_birth, :gender, :measurement_type, :percentile], unique: true, name: "index_growth_standards_on_all_keys" # rubocop:disable Layout/SpaceInsideArrayLiteralBrackets
+
   end
 end
