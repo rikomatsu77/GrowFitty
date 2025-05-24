@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_17_222536) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_24_003657) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "growth_standards", force: :cascade do |t|
+    t.integer "days_since_birth", null: false
+    t.integer "gender", null: false
+    t.integer "measurement_type", null: false
+    t.integer "percentile", null: false
+    t.float "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["days_since_birth", "gender", "measurement_type", "percentile"], name: "index_growth_standards_on_all_keys", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
