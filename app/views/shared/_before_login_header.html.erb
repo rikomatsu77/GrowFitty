@@ -3,6 +3,10 @@
     <a class="btn btn-ghost text-xl">GrowFitty</a>
   </div>
   <div class="flex-none flex items-center gap-2">
+    <div class="flex items-center gap-x-2">
+      <a class="btn">ログイン</a>
+      <a class="btn">新規登録</a>
+    </div>
   <!-- ハンバーガーメニュー -->
     <div class="dropdown dropdown-end">
         <div class="flex-none">
@@ -21,26 +25,20 @@
           </button>
         </div>
     <!-- ドロップダウン内容 -->
-        <ul
+       <ul
           tabindex="0"
           class="menu dropdown-content bg-base-200 rounded-box z-[1] mt-4 w-52 p-2 shadow">
             <li>
-              <%= link_to "マイページ", "#" %>
+              <%= link_to "ログイン", new_user_session_path %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+              <%= link_to "新規登録", new_user_registration_path %>
             </li>
             <li>
               <%= link_to "アプリの使い方", "#" %>
             </li>
             <li>
-              <%= link_to "投稿作成", "#" %>
-            </li>
-            <li>
               <%= link_to "コーディネート一覧/検索", "#" %>
-            </li>
-            <li>
-              <%= link_to "ブックマーク", "#" %>
             </li>
             <li>
               <%= link_to "利用規約", "#" %>
@@ -51,7 +49,7 @@
             <li>
               <%= link_to "お問い合わせ", "#" %>
             </li>
-        </ul>
+      </ul>
     </div>
   </div>
 </div>
