@@ -1,2 +1,35 @@
-<h1>Predictions#new</h1>
-<p>Find me in app/views/predictions/new.html.erb</p>
+<h1 class="text-center text-green-600 text-2xl mt-6">サイズ予測</h1>
+
+<div class="container mx-auto bg-white p-6 rounded-lg shadow-lg">
+  <%= form_with url: create_prediction_path, method: :post, local: true do |f| %>
+    <div class="mb-4">
+      <label class="block text-gray-700">性別</label>
+      <%= f.select :gender, [["男性", "male"], ["女性", "female"]], class: "border p-2 rounded-lg w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700">生年月日</label>
+      <%= f.date_field :birth_date, class: "border p-2 rounded-lg w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700">測定日</label>
+      <%= f.date_field :measurement_date, class: "border p-2 rounded-lg w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700">測定タイプ</label>
+      <%= f.select :measurement_type, [["身長", "height"], ["体重", "weight"]], class: "border p-2 rounded-lg w-full" %>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-gray-700">測定値</label>
+      <%= f.number_field :value, class: "border p-2 rounded-lg w-full" %>
+    </div>
+
+    <div class="text-center mt-6">
+      <%= f.submit "予測する", class: "btn bg-green-500 text-white rounded-lg px-6 py-2" %>
+    </div>
+  <% end %>
+</div>
+
