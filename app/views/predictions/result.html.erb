@@ -1,29 +1,29 @@
 <h1 class="text-center text-green-600 text-2xl mt-6">予測サービス結果</h1>
 
 <div class="container mx-auto bg-white p-6 rounded-lg shadow-lg">
-  <!-- 現在の季節を右上に表示 -->
-  <div class="text-right text-gray-600 text-sm">
-    今の季節は<strong><%= @current_season %></strong>です。
-  </div>
 
   <!-- 測定結果 -->
   <div class="bg-gray-100 p-4 rounded-lg shadow-md text-center">
     <h2 class="text-xl font-semibold text-green-600">測定結果</h2>
     <p class="text-lg font-bold">
-      現在の身長: <%= sprintf("%.1f", @current_height) %> cm
+      現在の身長: <%= sprintf("%.1f", params[:current_height].to_f) %> cm
     </p>
   </div>
 
   <!-- 季節ごとの予測結果 -->
+  <% seasonal_data = params[:seasonal_data].sort_by { |data| data["days"].to_i } %>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-    <% @seasonal_data.each do |data| %>
-      <div class="p-4 rounded-lg shadow-md text-center
-        <% case data[:season]
-           when 'spring' %> bg-green-100 border-green-500
-           when 'summer' %> bg-yellow-100 border-yellow-500
-           when 'autumn' %> bg-orange-100 border-orange-500
-           when 'winter' %> bg-blue-100 border-blue-500
-           <% end %>">
+    <% seasonal_data.each do |data| %>
+      <% 
+        season_class = case data[:season]
+                       when 'spring' then 'bg-green-100 border border-green-500'
+                       when 'summer' then 'bg-yellow-100 border border-yellow-500'
+                       when 'autumn' then 'bg-orange-100 border border-orange-500'
+                       when 'winter' then 'bg-blue-100 border border-blue-500'
+                       else 'bg-white border'
+                       end
+      %>
+      <div class="<%= 'p-4 rounded-lg shadow-md text-center ' + season_class %>">
         <h2 class="text-lg font-semibold">
           <%= case data[:season]
                when 'spring' then "春の予測"
@@ -49,4 +49,3 @@
     <%= link_to "ホームに戻る", root_path, class: "btn bg-green-500 text-white rounded-lg px-6 py-2" %>
   </div>
 </div>
-

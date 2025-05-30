@@ -12,7 +12,8 @@ class PredictionsController < ApplicationController
     )
 
     seasonal_data = prediction.calculate
-
-    redirect_to prediction_result_path, flash: { seasonal_data: seasonal_data, current_season: current_season, current_height: params[:value] }
+    puts "DEBUG: seasonal_data: #{seasonal_data}"
+    puts "DEBUG: current_height: #{params[:value]}"
+    redirect_to prediction_result_path(seasonal_data: seasonal_data, current_height: params[:value])
   end
 end
