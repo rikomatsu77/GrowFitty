@@ -27,7 +27,6 @@ class Prediction
   end
 
   def predict_growth(percentile)
-
   # 季節の開始日を定義
   season_start_dates = {
     winter: Date.new(Date.today.year, 12, 1),
