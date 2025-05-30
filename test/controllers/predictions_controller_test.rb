@@ -2,17 +2,17 @@ require "test_helper"
 
 class PredictionsControllerTest < ActionDispatch::IntegrationTest
   test "should get new" do
-    get predictions_new_url
+    get new_prediction_url
     assert_response :success
   end
 
   test "should get create" do
-    get predictions_create_url
+    post create_prediction_url
     assert_response :success
   end
 
   test "should get result" do
-    get predictions_result_url
+    get prediction_result_url
     assert_response :success
   end
 end

@@ -18,9 +18,7 @@ class Prediction
 
   def find_percentile
     days_since_birth_at_measurement = (measurement_date - birth_date).to_i
-
     GrowthStandard.where(gender: gender, measurement_type: measurement_type)
-                  #.where("days_since_birth <= ?", days_since_birth_at_measurement)
                   .where(days_since_birth: days_since_birth_at_measurement)
                   .order(Arel.sql("abs(value - #{value})"))
                   .limit(1)
@@ -29,7 +27,6 @@ class Prediction
   end
 
   def predict_growth(percentile)
-
   # 季節の開始日を定義
   season_start_dates = {
     winter: Date.new(Date.today.year, 12, 1),
@@ -64,5 +61,4 @@ class Prediction
 
   future_predictions
   end
-
 end
