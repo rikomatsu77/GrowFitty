@@ -4,6 +4,5 @@ one:
   days_since_birth: 1
   gender: 1
   measurement_type: 1
-  percentile: 1
-  value: 1.5
-
+  percentile: 3
+  value: 3
