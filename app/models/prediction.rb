@@ -11,7 +11,8 @@ class Prediction
 
   def calculate
     percentile = find_percentile
-    predict_growth(percentile)
+    seasonal_data, current_value = predict_growth(percentile)
+    return seasonal_data, current_value
   end
 
   private
@@ -38,6 +39,12 @@ class Prediction
   today = Date.today
   days_since_birth_today = (today - birth_date).to_i
 
+  current_value = GrowthStandard.where(gender: gender, measurement_type: 0)
+                                .where(days_since_birth: days_since_birth_today)
+                                .where(percentile: percentile)
+                                .pluck(:value)
+                                .first
+
   future_predictions = []
 
   # 先の4季節分を予測
@@ -50,7 +57,7 @@ class Prediction
     future_days_since_birth = days_since_birth_today + (season_date - today).to_i
     future_season_date_since_today = (season_date - today).to_i
 
-    predicted_value = GrowthStandard.where(gender: gender, measurement_type: measurement_type)
+    predicted_value = GrowthStandard.where(gender: gender, measurement_type: 0)
                                     .where(days_since_birth: future_days_since_birth)
                                     .where(percentile: percentile)
                                     .pluck(:value)
@@ -59,6 +66,6 @@ class Prediction
     future_predictions << { season: future_season, height: predicted_value, days: future_season_date_since_today }
   end
 
-  future_predictions
+  return future_predictions, current_value
   end
 end

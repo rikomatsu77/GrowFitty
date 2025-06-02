@@ -11,8 +11,8 @@ class PredictionsController < ApplicationController
       value: params[:value]
     )
 
-    seasonal_data = prediction.calculate
-    redirect_to prediction_result_path(seasonal_data: seasonal_data, current_height: params[:value])
+    seasonal_data, current_height = prediction.calculate
+    redirect_to prediction_result_path(seasonal_data: seasonal_data,current_height: current_height)
   end
 
   def result
