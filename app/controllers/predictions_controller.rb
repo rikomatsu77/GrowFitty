@@ -12,7 +12,7 @@ class PredictionsController < ApplicationController
     )
 
     seasonal_data, current_height = prediction.calculate
-    redirect_to prediction_result_path(seasonal_data: seasonal_data,current_height: current_height)
+    redirect_to prediction_result_path(seasonal_data: seasonal_data, current_height: current_height)
   end
 
   def result
