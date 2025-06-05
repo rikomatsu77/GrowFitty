@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  child: one
+  measured_on: 2025-06-05 15:56:38
+  measurement_type: 0
+  value: 48
+  percentile: 50
+
+two:
+  child: two
+  measured_on: 2025-06-05 15:56:38
+  measurement_type: 1
+  value: 3
+  percentile: 50
