@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  name: test1
+  gender: 0
+  birthday: 2025-06-05 15:01:07
+
+two:
+  user: two
+  name: test2
+  gender: 1
+  birthday: 2025-06-05 15:01:07
