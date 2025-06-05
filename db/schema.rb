@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_24_003657) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_05_065638) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "children", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.string "gender", null: false
+    t.datetime "birthday", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_children_on_user_id"
+  end
 
   create_table "growth_standards", force: :cascade do |t|
     t.integer "days_since_birth", null: false
@@ -23,6 +33,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_24_003657) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["days_since_birth", "gender", "measurement_type", "percentile"], name: "index_growth_standards_on_all_keys", unique: true
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.bigint "child_id", null: false
+    t.datetime "measured_on", null: false
+    t.string "measurement_type", null: false
+    t.float "value", null: false
+    t.float "percentile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_measurements_on_child_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,4 +58,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_24_003657) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "children", "users"
+  add_foreign_key "measurements", "children"
 end
