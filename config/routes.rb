@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
 
+  namespace :members do
+    resource :mypage, only: [:show, :edit, :update]
+    resources :children
+  end
 
   get "predictions/new", to: "predictions#new", as: :new_prediction
   post "predictions/create", to: "predictions#create", as: :create_prediction
