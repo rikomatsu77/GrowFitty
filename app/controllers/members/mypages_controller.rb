@@ -8,6 +8,7 @@ class Members::MypagesController < ApplicationController
 
   def edit
     @user = current_user
+    @children = @user.children.includes(:measurements).presence || [] # 子どもがいない場合は空の配列を代入
   end
 
   def update

@@ -1,0 +1,60 @@
+<% if @child.errors.any? %>
+  <div class="error-messages">
+    <h2>入力に誤りがあります：</h2>
+    <ul>
+      <% @child.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= form_with model: [:members, @child], local: true, data: { turbo: false } do |f| %>
+  <!-- 子どもの基本情報 -->
+  <div>
+    <%= f.label :name, "ニックネーム" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :gender, "性別" %><br>
+    <%= f.select :gender, [["男の子", "male"], ["女の子", "female"]] %>
+  </div>
+
+  <div>
+    <%= f.label :birthday, "生年月日" %><br>
+    <%= f.date_field :birthday %>
+  </div>
+
+  <hr>
+
+  <!-- 身長・体重の入力欄を固定で表示 -->
+  <% { "height" => "身長", "weight" => "体重" }.each do |type, label| %>
+    <% measurement = @child.measurements.find { |m| m.measurement_type == type } || @child.measurements.build(measurement_type: type) %>
+    <%= f.fields_for :measurements, measurement do |m| %>
+      <div>
+        <h4><%= label %>の入力</h4>
+        <%= m.hidden_field :measurement_type, value: type %>
+
+        <div>
+          <%= m.label :value, "#{label} (#{type == 'height' ? 'cm' : 'kg'})" %><br>
+          <%= m.number_field :value, step: 0.1 %>
+        </div>
+
+        <div>
+          <%= m.label :measured_on, "測定日" %><br>
+          <%= m.date_field :measured_on %>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "保存", class: "btn btn-primary" %>
+<% end %>

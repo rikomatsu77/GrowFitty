@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :members do
     resource :mypage, only: [:show, :edit, :update]
-    resources :children
+    resources :children, except: [:show]
   end
 
   get "predictions/new", to: "predictions#new", as: :new_prediction

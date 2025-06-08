@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_05_065638) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_08_185308) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,9 +37,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_05_065638) do
 
   create_table "measurements", force: :cascade do |t|
     t.bigint "child_id", null: false
-    t.datetime "measured_on", null: false
+    t.datetime "measured_on"
     t.string "measurement_type", null: false
-    t.float "value", null: false
+    t.float "value"
     t.float "percentile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

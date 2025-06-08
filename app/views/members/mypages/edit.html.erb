@@ -15,7 +15,6 @@
   </div>
 <% end %>
 
-# バリデーションエラー自動で表示
   <%= form_with model: @user, url: user_registration_path, method: :patch, local: true do |f| %>
     <div>
       <%= f.label :user_name, "ユーザー名" %><br>

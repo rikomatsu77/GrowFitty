@@ -1,4 +1,9 @@
 <h2>マイページ</h2>
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 
 <p><strong>ユーザー名：</strong><%= current_user.user_name.presence || "未設定" %></p>
 <p><%= link_to "ユーザー情報を編集", edit_members_mypage_path, class: "btn btn-outline-primary" %></p>
@@ -14,12 +19,17 @@
       <p>性別：<%= child.gender == "male" ? "男の子" : "女の子" %></p>
       <p>生年月日：<%= child.birthday.strftime("%Y年%m月%d日") %></p>
       <p>身長：<%= child.latest_height || "未入力" %> cm</p>
+      <p>身長測定日：<%= child.latest_measured_on_h&.strftime("%Y年%m月%d日") || "未入力" %></p>
       <p>体重：<%= child.latest_weight || "未入力" %> kg</p>
-      <p>測定日：<%= child.latest_measured_on&.strftime("%Y年%m月%d日") || "未入力" %></p>
+      <p>体重測定日：<%= child.latest_measured_on_w&.strftime("%Y年%m月%d日") || "未入力" %></p>
+
 
       <div style="margin-top: 0.5rem;">
         <%= link_to "編集", edit_members_child_path(child), class: "btn btn-outline-secondary" %>
-        <%= link_to "削除", members_child_path(child), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+        <%= button_to "削除", members_child_path(child),
+              method: :delete,
+              data: { confirm: "本当に削除しますか？" },
+              class: "btn btn-danger" %>
       </div>
     </div>
   <% end %>
