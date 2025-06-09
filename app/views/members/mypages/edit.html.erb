@@ -1,0 +1,77 @@
+<h1>プロフィール編集</h1>
+
+<!-- ユーザー情報の編集 -->
+<section>
+  <h2>ユーザー情報</h2>
+  
+  <% if @user.errors.any? %>
+  <div class="error-messages">
+    <h2>入力に誤りがあります：</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <%= form_with model: @user, url: user_registration_path, method: :patch, local: true do |f| %>
+    <div>
+      <%= f.label :user_name, "ユーザー名" %><br>
+      <%= f.text_field :user_name %>
+    </div>
+
+    <div>
+      <%= f.label :email, "メールアドレス" %><br>
+      <%= f.email_field :email %>
+    </div>
+
+    <div>
+      <%= f.submit "更新", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</section>
+
+<hr>
+
+<!-- お子さま情報の一覧 -->
+<section>
+  <h2>お子さま情報</h2>
+
+  <!-- 「お子さま情報の追加」ボタン -->
+  <%= link_to "お子さま情報を追加", new_members_child_path, class: "btn btn-success" %>
+
+  <% if @children.any? %>
+    <% @children.each do |child| %>
+      <div class="child-info-box">
+        <p><strong>ニックネーム：</strong> <%= child.name %></p>
+        <p><strong>性別：</strong> <%= child.gender == "male" ? "男の子" : "女の子" %></p>
+        <p><strong>生年月日：</strong> <%= child.birthday.strftime("%Y年%m月%d日") %></p>
+
+        <% height = child.measurements.find { |m| m.measurement_type == "height" } %>
+        <% weight = child.measurements.find { |m| m.measurement_type == "weight" } %>
+
+        <% if height %>
+          <p><strong>身長測定日：</strong> <%= height.measured_on.strftime("%Y年%m月%d日") %></p>
+          <p><strong>身長：</strong> <%= height.value %> cm</p>
+        <% else %>
+          <p>身長のデータは未登録です</p>
+        <% end %>
+
+        <% if weight %>
+          <p><strong>体重測定日：</strong> <%= weight.measured_on.strftime("%Y年%m月%d日") %></p>
+          <p><strong>体重：</strong> <%= weight.value %> kg</p>
+        <% else %>
+          <p>体重のデータは未登録です</p>
+        <% end %>
+
+        <!-- 編集・削除ボタン -->
+        <%= link_to "編集", edit_members_child_path(child), class: "btn btn-outline-primary" %>
+        <%= link_to "削除", members_child_path(child), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+      </div>
+      <hr>
+    <% end %>
+  <% else %>
+    <p>登録されたお子さま情報はありません。</p>
+  <% end %>
+</section>

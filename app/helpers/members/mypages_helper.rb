@@ -1,0 +1,2 @@
+module Members::MypagesHelper
+end

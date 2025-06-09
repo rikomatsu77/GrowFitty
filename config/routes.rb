@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   root "static_pages#top"
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
+
+  namespace :members do
+    resource :mypage, only: [:show, :edit, :update]
+    resources :children, except: [:show]
+  end
 
   get "predictions/new", to: "predictions#new", as: :new_prediction
   post "predictions/create", to: "predictions#create", as: :create_prediction
