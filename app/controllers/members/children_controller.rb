@@ -57,6 +57,3 @@ class Members::ChildrenController < ApplicationController
     )
   end
 end
-
-
-
