@@ -1,0 +1,105 @@
+<h1 class="text-center text-green-600 text-2xl mt-6">サイズ予測結果</h1>
+
+<!-- タブ切り替えボタン -->
+<div class="flex justify-center space-x-4 mb-4">
+  <button class="tab-button bg-green-600 text-white px-4 py-2 rounded-lg" data-tab="height-prediction">
+    身長予測
+  </button>
+  <button class="tab-button bg-blue-600 text-white px-4 py-2 rounded-lg" data-tab="weight-prediction">
+    体重データからの身長予測
+  </button>
+</div>
+
+<div class="container mx-auto bg-white p-6 rounded-lg shadow-lg">
+  <% if @children_results.present? %>
+
+    <!-- 身長予測タブ -->
+    <div id="height-prediction" class="tab-content">
+      <h3 class="text-lg font-semibold text-green-600">身長データからの予測</h3>
+      <% @children_results.each do |child_result| %>
+        <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
+          <h2 class="text-xl font-semibold text-green-600"><%= child_result["name"] %> さん</h2>
+          <p class="text-lg font-bold">
+            現在の身長予測: <%= child_result["height_current"].present? ? sprintf("%.1f", child_result["height_current"].to_f) : "データなし" %> cm
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+            <% if child_result["height_prediction"].present? %>
+              <% child_result["height_prediction"].each do |data| %>
+                <div class="p-4 rounded-lg shadow-md bg-gray-100 border">
+                  <h4 class="text-lg font-semibold">
+                    <%= case data["season"]
+                        when "spring" then "春"
+                        when "summer" then "夏"
+                        when "autumn" then "秋"
+                        when "winter" then "冬"
+                    end %> の予測
+                  </h4>
+                  <p class="text-md font-bold">
+                    <%= data["height"].present? ? sprintf("%.1f", data["height"].to_f) : "データなし" %> cm（あと <%= data["days"] %> 日）
+                  </p>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="text-red-600">身長データがありません。</p>
+              <%= link_to "プロフィールを編集する", members_mypage_path, class: "text-blue-600 underline" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- 体重データからの予測タブ -->
+    <div id="weight-prediction" class="tab-content" style="display: none;">
+      <h3 class="text-lg font-semibold text-blue-600">体重データからの身長予測</h3>
+      <% @children_results.each do |child_result| %>
+        <div class="bg-gray-100 p-4 rounded-lg shadow-md mb-6">
+          <h2 class="text-xl font-semibold text-blue-600"><%= child_result["name"] %> さん</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+            <% if child_result["weight_prediction"].present? %>
+              <% child_result["weight_prediction"].each do |data| %>
+                <div class="p-4 rounded-lg shadow-md bg-gray-100 border">
+                  <h4 class="text-lg font-semibold">
+                    <%= case data["season"]
+                        when "spring" then "春"
+                        when "summer" then "夏"
+                        when "autumn" then "秋"
+                        when "winter" then "冬"
+                    end %> の予測
+                  </h4>
+                  <p class="text-md font-bold">
+                    <%= data["height"].present? ? sprintf("%.1f", data["height"].to_f) : "データなし" %> cm（あと <%= data["days"] %> 日）
+                  </p>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="text-red-600">体重データがありません。</p>
+              <%= link_to "プロフィールを編集する", members_mypage_path, class: "text-blue-600 underline" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <p class="text-red-600 text-center">サイズ予測データがありません。</p>
+  <% end %>
+</div>
+
+<!-- タブ切り替え用 JavaScript（デフォルトで身長予測タブを表示） -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#height-prediction").style.display = "block";
+    document.querySelector("#weight-prediction").style.display = "none";
+  });
+
+  document.querySelectorAll(".tab-button").forEach(button => {
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".tab-content").forEach(content => {
+        content.style.display = "none";
+      });
+      document.getElementById(button.dataset.tab).style.display = "block";
+    });
+  });
+</script>
