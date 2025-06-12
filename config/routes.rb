@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "predictions/new", to: "predictions#new", as: :new_prediction
   post "predictions/create", to: "predictions#create", as: :create_prediction
   get "predictions/result", to: "predictions#result", as: :prediction_result
+  post "members/predictions/create", to: "members/predictions#create", as: :members_create_prediction
+  get "members/predictions/result", to: "members/predictions#result", as: :members_prediction_result
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
