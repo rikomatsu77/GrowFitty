@@ -4,8 +4,8 @@
   </div>
   <div class="flex-none flex items-center gap-2">
     <div class="flex items-center gap-x-2">
-      <a class="btn">ログイン</a>
-      <a class="btn">新規登録</a>
+      <%= link_to "ログイン", new_user_session_path, class: "btn" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn" %>
     </div>
   <!-- ハンバーガーメニュー -->
     <div class="dropdown dropdown-end">
