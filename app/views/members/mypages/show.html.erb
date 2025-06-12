@@ -1,42 +1,50 @@
-<h2>マイページ</h2>
+<h2 class="text-3xl font-bold text-center text-gray-800 my-6">マイページ</h2>
+
+<!-- フラッシュメッセージの表示 -->
+<% if flash[:notice] %>
+  <div class="alert alert-success shadow-lg w-full max-w-lg mx-auto text-center">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
 <% if flash[:alert] %>
-  <div class="alert alert-danger">
+  <div class="alert alert-error shadow-lg w-full max-w-lg mx-auto text-center">
     <%= flash[:alert] %>
   </div>
 <% end %>
 
-<p><strong>ユーザー名：</strong><%= current_user.user_name.presence || "未設定" %></p>
-<p><%= link_to "ユーザー情報を編集", edit_members_mypage_path, class: "btn btn-outline-primary" %></p>
+<div class="container mx-auto bg-white p-6 rounded-lg shadow-lg max-w-lg text-center">
+  <p class="text-lg font-semibold">ユーザー名: <%= current_user.user_name.presence || "未設定" %></p>
+  <div class="mt-4">
+    <%= link_to "ユーザー情報を編集", edit_members_mypage_path, class: "btn btn-primary" %>
+  </div>
+</div>
 
-<hr>
+<hr class="my-6">
 
-<h3>登録中のお子さま情報</h3>
+<div class="mt-6 text-center mb-12">
+  <%= link_to "お子さまを追加する", new_members_child_path, class: "btn btn-success" %>
+</div>
+
+<h3 class="text-2xl font-semibold text-gray-700 text-center">登録中のお子さま情報</h3>
 
 <% if @children.any? %>
   <% @children.each do |child| %>
-    <div class="child-info-box" style="margin-bottom: 1.5rem; padding: 1rem; border: 1px solid #ccc; border-radius: 8px;">
-      <h4><%= child.name %></h4>
-      <p>性別：<%= child.gender == "male" ? "男の子" : "女の子" %></p>
-      <p>生年月日：<%= child.birthday.strftime("%Y年%m月%d日") %></p>
-      <p>身長：<%= child.latest_height || "未入力" %> cm</p>
-      <p>身長測定日：<%= child.latest_measured_on_h&.strftime("%Y年%m月%d日") || "未入力" %></p>
-      <p>体重：<%= child.latest_weight || "未入力" %> kg</p>
-      <p>体重測定日：<%= child.latest_measured_on_w&.strftime("%Y年%m月%d日") || "未入力" %></p>
+    <div class="card bg-gray-100 shadow-lg p-6 rounded-lg my-4 text-center">
+      <h4 class="text-xl font-bold text-gray-900"><%= child.name %></h4>
+      <p class="text-md">性別: <%= child.gender == "male" ? "男の子" : "女の子" %></p>
+      <p class="text-md">生年月日: <%= child.birthday.strftime("%Y年%m月%d日") %></p>
+      <p class="text-md">身長: <%= child.latest_height || "未入力" %> cm</p>
+      <p class="text-md">身長測定日: <%= child.latest_measured_on_h ? child.latest_measured_on_h.strftime("%Y年%m月%d日") : "未入力" %></p>
+      <p class="text-md">体重: <%= child.latest_weight || "未入力" %> kg</p>
+      <p class="text-md">体重測定日: <%= child.latest_measured_on_w ? child.latest_measured_on_w.strftime("%Y年%m月%d日") : "未入力" %></p>
 
-
-      <div style="margin-top: 0.5rem;">
-        <%= link_to "編集", edit_members_child_path(child), class: "btn btn-outline-secondary" %>
-        <%= button_to "削除", members_child_path(child),
-              method: :delete,
-              data: { confirm: "本当に削除しますか？" },
-              class: "btn btn-danger" %>
+      <div class="mt-4 flex justify-center space-x-3">
+        <%= link_to "編集", edit_members_child_path(child), class: "btn btn-secondary" %>
+        <%= button_to "削除", members_child_path(child), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-error" %>
       </div>
     </div>
   <% end %>
 <% else %>
-  <p>お子さまの情報はまだ登録されていません。</p>
+  <p class="text-gray-600 text-center mt-4">お子さまの情報はまだ登録されていません。</p>
 <% end %>
-
-<div style="margin-top: 1.5rem;">
-  <%= link_to "お子さまを追加する", new_members_child_path, class: "btn btn-primary" %>
-</div>
