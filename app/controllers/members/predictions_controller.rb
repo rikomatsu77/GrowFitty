@@ -5,7 +5,6 @@ class Members::PredictionsController < ApplicationController
     children_results = []
 
     current_user.children.each do |child|
-
       name = child.name
       birth_date = child.birthday
       gender = child.gender
@@ -25,7 +24,7 @@ class Members::PredictionsController < ApplicationController
           gender: gender,
           birth_date: birth_date,
           measurement_date: latest_height_date,
-          measurement_type: 'height',
+          measurement_type: "height",
           value: latest_height
         )
         height_prediction, height_current = prediction.calculate
@@ -36,7 +35,7 @@ class Members::PredictionsController < ApplicationController
           gender: gender,
           birth_date: birth_date,
           measurement_date: latest_weight_date,
-          measurement_type: 'weight',
+          measurement_type: "weight",
           value: latest_weight
         )
         weight_prediction, weight_current = prediction.calculate
