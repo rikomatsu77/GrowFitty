@@ -1,0 +1,32 @@
+ja:
+  views:
+    members:
+      mypages:
+        show:
+          title: "マイページ"
+          user_name_label: "ユーザー名"
+          edit_button: "ユーザー情報を編集"
+          add_child_button: "お子さまを追加する"
+          registered_children: "登録中のお子さま情報"
+          no_children: "お子さまの情報はまだ登録されていません。"
+        edit:
+          update_button: "更新"
+      children:
+        form:
+          title: "お子さま情報の入力"
+          name_label: "ニックネーム"
+          gender_label: "性別"
+          birthday_label: "生年月日"
+          height_label: "身長"
+          weight_label: "体重"
+          measured_on_label: "測定日"
+          submit_button: "保存"
+        new:
+          title: "お子さま情報の新規登録"
+        edit:
+          title: "お子さま情報の編集"
+    common:
+      edit: "編集"
+      delete: "削除"
+      delete_confirm: "本当に削除しますか？"
+

@@ -1,4 +1,4 @@
-<h2 class="text-3xl font-bold text-center text-gray-800 my-6">マイページ</h2>
+<h2 class="text-3xl font-bold text-center text-gray-800 my-6"><%= t("views.members.mypages.show.title") %></h2>
 
 <!-- フラッシュメッセージの表示 -->
 <% if flash[:notice] %>
@@ -14,19 +14,19 @@
 <% end %>
 
 <div class="container mx-auto bg-white p-6 rounded-lg shadow-lg max-w-lg text-center">
-  <p class="text-lg font-semibold">ユーザー名: <%= current_user.user_name.presence || "未設定" %></p>
+  <p class="text-lg font-semibold"><%= t("views.members.mypages.show.user_name_label") %>: <%= current_user.user_name.presence || t("views.common.unset") %></p>
   <div class="mt-4">
-    <%= link_to "ユーザー情報を編集", edit_members_mypage_path, class: "btn btn-primary" %>
+    <%= link_to t("views.members.mypages.show.edit_button"), edit_members_mypage_path, class: "btn btn-primary" %>
   </div>
 </div>
 
 <hr class="my-6">
 
 <div class="mt-6 text-center mb-12">
-  <%= link_to "お子さまを追加する", new_members_child_path, class: "btn btn-success" %>
+  <%= link_to t("views.members.mypages.show.add_child_button"), new_members_child_path, class: "btn btn-success" %>
 </div>
 
-<h3 class="text-2xl font-semibold text-gray-700 text-center">登録中のお子さま情報</h3>
+<h3 class="text-2xl font-semibold text-gray-700 text-center"><%= t("views.members.mypages.show.registered_children") %></h3>
 
 <% if @children.any? %>
   <% @children.each do |child| %>
@@ -40,11 +40,11 @@
       <p class="text-md">体重測定日: <%= child.latest_measured_on_w ? child.latest_measured_on_w.strftime("%Y年%m月%d日") : "未入力" %></p>
 
       <div class="mt-4 flex justify-center space-x-3">
-        <%= link_to "編集", edit_members_child_path(child), class: "btn btn-secondary" %>
-        <%= button_to "削除", members_child_path(child), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-error" %>
+        <%= link_to t("views.common.edit"), edit_members_child_path(child), class: "btn btn-secondary" %>
+        <%= button_to t("views.common.delete"), members_child_path(child), method: :delete, data: { confirm: t("views.common.delete_confirm") }, class: "btn btn-error" %>
       </div>
     </div>
   <% end %>
 <% else %>
-  <p class="text-gray-600 text-center mt-4">お子さまの情報はまだ登録されていません。</p>
+  <p class="text-gray-600 text-center mt-4"><%= t("views.members.mypages.show.no_children") %></p>
 <% end %>
