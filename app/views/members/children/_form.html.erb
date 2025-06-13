@@ -3,11 +3,11 @@
     <% if @child.errors.any? %>
       <div class="alert alert-error shadow-lg w-full mx-auto">
         <h2 class="text-lg font-semibold">入力に誤りがあります：</h2>
-        <ul class="list-disc list-inside text-left">
-          <% @child.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+          <ul class="list-disc list-inside text-left">
+            <% @child.errors.full_messages.each do |message| %>
+              <li><%= message.gsub(/Measurements measured on|Measurements value/, "") %></li>
+            <% end %>
+          </ul>
       </div>
     <% end %>
 
@@ -21,17 +21,17 @@
 
       <!-- 子どもの基本情報 -->
       <div class="mb-4">
-        <%= f.label :name, "ニックネーム", class: "block text-md font-semibold" %>
+        <%= f.label :name, t("activerecord.attributes.child.name"), class: "block text-md font-semibold" %>
         <%= f.text_field :name, class: "input input-bordered w-full text-center" %>
       </div>
 
       <div class="mb-4">
-        <%= f.label :gender, "性別", class: "block text-md font-semibold" %>
+        <%= f.label :gender, t("activerecord.attributes.child.gender"), class: "block text-md font-semibold" %>
         <%= f.select :gender, [["男の子", "male"], ["女の子", "female"]], {}, class: "select select-bordered w-full text-center" %>
       </div>
 
       <div class="mb-4">
-        <%= f.label :birthday, "生年月日", class: "block text-md font-semibold" %>
+        <%= f.label :birthday, t("activerecord.attributes.child.birthday"), class: "block text-md font-semibold" %>
         <%= f.date_field :birthday, class: "input input-bordered w-full text-center" %>
       </div>
 
@@ -46,12 +46,14 @@
             <%= m.hidden_field :measurement_type, value: type %>
 
             <div class="mb-4">
-              <%= m.label :value, "#{label} (#{type == 'height' ? 'cm' : 'kg'})", class: "block text-md font-semibold" %>
+              <% unit = type == "height" ? "cm" : "kg" %>
+              <% label_key = type == "height" ? "views.members.children.form.height_label" : "views.members.children.form.weight_label" %>
+              <%= m.label :value, "#{t(label_key)} (#{unit})", class: "block text-md font-semibold" %>
               <%= m.number_field :value, step: 0.1, class: "input input-bordered w-full text-center" %>
             </div>
 
             <div class="mb-4">
-              <%= m.label :measured_on, "測定日", class: "block text-md font-semibold" %>
+              <%= m.label :measured_on, t("views.members.children.form.measured_on_label"), class: "block text-md font-semibold" %>
               <%= m.date_field :measured_on, class: "input input-bordered w-full text-center" %>
             </div>
           </div>
@@ -59,7 +61,7 @@
         <% end %>
       <% end %>
 
-      <%= f.submit "保存", class: "btn btn-primary w-full" %>
+      <%= f.submit t("views.members.children.form.submit_button"), class: "btn btn-primary w-full" %>
     <% end %>
   </div>
 </div>

@@ -1,5 +1,5 @@
-<h2>お子さま情報の新規登録</h2>
+<h2><%= t("views.members.children.new.title") %></h2>
 
 <%= render 'form', child: @child %>
 
-<%= link_to 'マイページに戻る', members_mypage_path %>
+<%= link_to t("views.common.back_to_mypage"), members_mypage_path %>

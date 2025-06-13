@@ -1,0 +1,50 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+      child: "お子さま"
+      measurement: "測定データ"
+    attributes:
+      user:
+        user_name: "ユーザー名"
+        email: "メールアドレス"
+        password: "パスワード"
+      child:
+        name: "ニックネーム"
+        gender: "性別"
+        birthday: "生年月日"
+      measurement:
+        measurement_type: "測定タイプ"
+        value: "値"
+        measured_on: "測定日"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "メールアドレスを入力してください"
+              taken: "このメールアドレスはすでに登録されています"
+            password:
+              blank: "パスワードを入力してください"
+              too_short: "パスワードは%{count}文字以上で入力してください"
+        child:
+          attributes:
+            name:
+              blank: "ニックネームを入力してください"
+            gender:
+              blank: "性別を選択してください"
+            birthday:
+              blank: "生年月日を入力してください"
+              future_date: "生年月日は未来の日付にできません"
+        measurement:
+          attributes:
+            measurement_type:
+              blank: "測定タイプを選択してください"
+            value:
+              blank: "値を入力してください"
+              not_a_number: "値は数値で入力してください"
+            measured_on:
+              blank: "測定日を入力してください"
+      messages:
+        blank: "入力してください"
+        not_a_number: "数値で入力してください"

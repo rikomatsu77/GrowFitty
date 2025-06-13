@@ -1,6 +1,6 @@
 <div class="flex justify-center items-center min-h-screen">
   <div class="w-full max-w-lg bg-white p-6 rounded-lg shadow-lg text-center">
-    <h1 class="text-3xl font-bold text-gray-800 my-6">プロフィール編集</h1>
+    <h1 class="text-3xl font-bold text-gray-800 my-6"><%= t("views.members.mypages.edit.title") %></h1>
 
     <!-- フラッシュメッセージの表示 -->
     <% if flash[:notice] %>
@@ -32,17 +32,17 @@
 
       <%= form_with model: @user, url: user_registration_path, method: :patch, local: true do |f| %>
         <div class="mb-4 text-center">
-          <%= f.label :user_name, "ユーザー名", class: "block text-md font-semibold" %>
+          <%= f.label :user_name, t("activerecord.attributes.user.user_name"), class: "block text-md font-semibold" %>
           <%= f.text_field :user_name, class: "input input-bordered w-full" %>
         </div>
 
         <div class="mb-4 text-center">
-          <%= f.label :email, "メールアドレス", class: "block text-md font-semibold" %>
+          <%= f.label :email, t("activerecord.attributes.user.email"), class: "block text-md font-semibold" %>
           <%= f.email_field :email, class: "input input-bordered w-full" %>
         </div>
 
         <div class="mt-6 text-center">
-          <%= f.submit "更新", class: "btn btn-primary w-full" %>
+          <%= f.submit t("views.members.mypages.edit.update_button"), class: "btn btn-primary w-full" %>
         </div>
       <% end %>
     </section>
