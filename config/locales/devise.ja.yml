@@ -1,0 +1,53 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: "メールアドレスの確認が完了しました。"
+      send_instructions: "数分後にメールが届きますので、確認の手続きをしてください。"
+      send_paranoid_instructions: "もし登録済みのメールアドレスであれば、確認の案内メールが送られます。"
+    failure:
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントはまだ有効化されていません。"
+      invalid: "メールアドレスまたはパスワードが間違っています。"
+      locked: "アカウントはロックされています。"
+      last_attempt: "次のログイン試行でアカウントがロックされます。"
+      not_found_in_database: "メールアドレスまたはパスワードが間違っています。"
+      timeout: "セッションの有効期限が切れました。再度ログインしてください。"
+      unauthenticated: "ログインするか、新規登録してください。"
+      unconfirmed: "アカウントを確認する必要があります。"
+    mailer:
+      confirmation_instructions:
+        subject: "アカウント確認の案内"
+      reset_password_instructions:
+        subject: "パスワード再設定の案内"
+      unlock_instructions:
+        subject: "アカウントのロック解除の案内"
+      email_changed:
+        subject: "メールアドレス変更のお知らせ"
+      password_change:
+        subject: "パスワード変更のお知らせ"
+    passwords:
+      send_instructions: "数分後にパスワード再設定の案内メールが届きます。"
+      updated: "パスワードを正常に変更しました。"
+    registrations:
+      signed_up: "アカウント登録が完了しました。"
+      update_needs_confirmation: "アカウント情報を更新しましたが、メールアドレスの確認が必要です。"
+      updated: "アカウント情報を更新しました。"
+      destroyed: "アカウントを削除しました。またのご利用をお待ちしています。"
+      new:
+        minimum_characters: "%{count}文字以上"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+    unlocks:
+      send_instructions: "数分後にアカウントロック解除の案内が届きます。"
+      unlocked: "アカウントのロックが解除されました。ログインしてください。"
+  errors:
+    messages:
+      already_confirmed: "すでに確認済みです。ログインしてください。"
+      confirmation_period_expired: "確認の有効期限が切れました。新しい確認メールを送信してください。"
+      expired: "有効期限が切れました。新しいものをリクエストしてください。"
+      not_found: "見つかりませんでした。"
+      not_locked: "このアカウントはロックされていません。"
+      not_saved:
+        one: "1件のエラーにより %{resource} の保存ができませんでした。"
+        other: "%{count}件のエラーにより %{resource} の保存ができませんでした。"
