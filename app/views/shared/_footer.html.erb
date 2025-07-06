@@ -1,29 +1,29 @@
-<footer class="footer fixed bottom-0 left-0 right-0 p-4 bg-base-200 text-base-content">
-  <div class="flex justify-center w-full gap-6">
+<footer class="footer fixed bottom-0 left-0 right-0 p-4 bg-[#FFC775] text-white z-10">
+  <div class="flex justify-around items-center w-full max-w-screen-md mx-auto px-4">
 
-    <%= link_to root_path, class: "btn btn-ghost text-lg flex flex-col items-center" do %>
-      <i class="fa-solid fa-house"></i>
-      <span class="ml-2">ホーム</span>
+    <%= link_to root_path, class: "flex flex-col items-center text-white text-xs" do %>
+      <i class="fa-solid fa-house text-2xl"></i>
+      <span class="whitespace-nowrap text-[12px]">ホーム</span>
     <% end %>
 
-    <%= link_to "#", class: "btn btn-ghost text-lg flex-col items-center" do %>
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <span class="ml-2">検索</span>
+    <%= link_to "#", class: "flex flex-col items-center text-white text-xs" do %>
+      <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+      <span class="whitespace-nowrap text-[12px]">検索（改修中）</span>
     <% end %>
 
-    <%= link_to "#", class: "btn btn-ghost text-lg flex-col items-center" do %>
-      <i class="fa-regular fa-square-plus text-2xl"></i>
-      <span class="ml-2">投稿</span>
+    <%= link_to "#", class: "flex flex-col items-center text-white text-xs" do %>
+      <i class="fa-solid fa-square-plus text-2xl"></i>
+      <span class="whitespace-nowrap text-[12px]">投稿（改修中）</span>
     <% end %>
 
-    <%= link_to "#", class: "btn btn-ghost text-lg flex-col items-center" do %>
-      <i class="fa-solid fa-bookmark"></i>
-      <span class="ml-2">ブックマーク</span>
+    <%= link_to "#", class: "flex flex-col items-center text-white text-xs" do %>
+      <i class="fa-solid fa-bookmark  text-2xl"></i>
+      <span class="whitespace-nowrap text-[12px]">ブックマーク（改修中）</span>
     <% end %>
 
-    <%= link_to members_mypage_path, class: "btn btn-ghost text-lg  flex-col items-center" do %>
-      <i class="fa-solid fa-user"></i>
-      <span class="ml-2">マイページ</span>
+    <%= link_to members_mypage_path, class: "flex flex-col items-center text-white text-xs" do %>
+      <i class="fa-solid fa-user  text-2xl"></i>
+      <span class="whitespace-nowrap text-[12px]">マイページ</span>
     <% end %>
 
   </div>

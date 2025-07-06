@@ -10,6 +10,7 @@ ja:
           registered_children: "登録中のお子さま情報"
           no_children: "お子さまの情報はまだ登録されていません。"
         edit:
+          title: "プロフィール編集"
           update_button: "更新"
       children:
         form:

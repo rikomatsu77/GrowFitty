@@ -1,30 +1,30 @@
-<div class="text-center mt-12">
-  <h2 class="text-2xl font-bold text-gray-800">
-  <%= link_to "GrowFitty", root_path, class: "hover:text-blue-500" %>
-  </h2>
-  <p class="text-lg font-medium text-gray-600">ー子供服サイズ予測で、成長をもっと楽しく！ー</p>
+<div class="text-center py-16 px-4 bg-[#FFFCF4]">
+  <h1 class="text-4xl font-extrabold text-[#2D4F4B] mb-4">
+    <%= link_to "GrowFitty", root_path, class: "hover:text-[#4AA398] transition-colors duration-200" %>
+  </h1>
+  <p class="text-lg text-[#4A6F6A] font-medium">ー 子供服サイズ予測で、成長をもっと楽しく！ ー</p>
 
-  <p class="mt-4 text-md text-gray-700 max-w-2xl mx-auto">
+  <p class="mt-6 text-md text-[#4A6F6A] max-w-2xl mx-auto leading-relaxed">
     GrowFittyは、お子さまの成長に合わせて最適な服のサイズを予測するサービスです。<br>
-    生年月日・身長・体重・性別から、先の季節にぴったりなサイズを提案。<br><br>
+    生年月日・身長・体重・性別から、先の季節にぴったりなサイズを提案。<br>
     コーディネート投稿やブックマーク機能で、楽しく効率的なお買い物をサポートします。
   </p>
 </div>
 
-<h1 class="text-center text-green-600 text-3xl font-bold mt-8">サイズ予測を試してみよう！</h1>
+<section class="text-center mt-12 px-4">
+  <h2 class="text-2xl font-bold text-[#3F8378] mb-6">サイズ予測を試してみよう！</h2>
 
-<div class="container mx-auto flex flex-col items-center mt-8">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="flex flex-col md:flex-row justify-center items-center gap-6">
     <!-- ゲスト用サイズ予測ボタン -->
-    <%= link_to new_prediction_path, class: "btn btn-primary text-lg px-8 py-4 shadow-lg w-full text-center" do %>
+    <%= link_to new_prediction_path, class: "btn px-8 py-4 w-64 text-lg shadow-lg text-white bg-[#EF6C00] hover:bg-[#d95f00] transition-colors duration-200" do %>
       ゲスト用サイズ予測
     <% end %>
 
     <!-- 会員用サイズ予測ボタン -->
     <%= form_with url: members_create_prediction_path, method: :post do %>
-      <button type="submit" class="btn btn-success text-lg px-8 py-4 shadow-lg w-full text-center">
+      <button type="submit" class="btn px-8 py-4 w-64 text-lg shadow-lg text-white bg-[#FF6164] hover:bg-[#e8575a] transition-colors duration-200">
         会員用サイズ予測
       </button>
     <% end %>
   </div>
-</div>
+</section>

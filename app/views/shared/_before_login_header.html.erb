@@ -1,16 +1,18 @@
-<div class="navbar bg-base-100 shadow-sm">
+<div class="navbar bg-[#FFC775] shadow-sm text-white">
   <div class="flex-1">
-    <a class="btn btn-ghost text-xl">GrowFitty</a>
+    <%= link_to "GrowFitty", root_path, class: "btn btn-ghost text-xl text-white hover:text-white" %>
   </div>
   <div class="flex-none flex items-center gap-2">
+    <!-- ログイン・新規登録ボタン -->
     <div class="flex items-center gap-x-2">
-      <%= link_to "ログイン", new_user_session_path, class: "btn" %>
-      <%= link_to "新規登録", new_user_registration_path, class: "btn" %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn text-white border-none bg-[#EF6C00] hover:bg-[#d95f00]" %>
+      <%= link_to "新規登録", new_user_registration_path, class: "btn text-white border-none bg-[#FF6164] hover:bg-[#e8575a]" %>
     </div>
+
   <!-- ハンバーガーメニュー -->
     <div class="dropdown dropdown-end">
         <div class="flex-none">
-          <button class="btn btn-square btn-ghost">
+          <button class="btn btn-square btn-ghost text-white hover:bg-[#f7b64d]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -27,7 +29,7 @@
     <!-- ドロップダウン内容 -->
        <ul
           tabindex="0"
-          class="menu dropdown-content bg-base-200 rounded-box z-[1] mt-4 w-52 p-2 shadow">
+          class="menu dropdown-content bg-white text-black rounded-box z-[1] mt-4 w-52 p-2 shadow">
             <li>
               <%= link_to "ログイン", new_user_session_path %>
             </li>
@@ -35,19 +37,19 @@
               <%= link_to "新規登録", new_user_registration_path %>
             </li>
             <li>
-              <%= link_to "アプリの使い方", "#" %>
+              <%= link_to "アプリの使い方（改修中）", "#" %>
             </li>
             <li>
-              <%= link_to "コーディネート一覧/検索", "#" %>
+              <%= link_to "コーディネート一覧/検索（改修中）", "#" %>
             </li>
             <li>
-              <%= link_to "利用規約", "#" %>
+              <%= link_to "利用規約（改修中）", "#" %>
             </li>
             <li>
-              <%= link_to "プライバシーポリシー", "#" %>
+              <%= link_to "プライバシーポリシー（改修中）", "#" %>
             </li>
             <li>
-              <%= link_to "お問い合わせ", "#" %>
+              <%= link_to "お問い合わせ（改修中）", "#" %>
             </li>
       </ul>
     </div>

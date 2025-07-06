@@ -1,9 +1,15 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to t("devise.shared.links.sign_in"), new_session_path(resource_name) %><br />
+  <div class="inline-block">
+    <%= link_to t("devise.shared.links.sign_in"), new_session_path(resource_name),
+      class: "btn border border-[#53CBFA] text-[#53CBFA] bg-white hover:bg-[#53CBFA]/10 px-6 py-2 rounded-lg font-semibold" %>
+  </div><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to t("devise.shared.links.sign_up"), new_registration_path(resource_name) %><br />
+  <div class="inline-block mt-2">
+    <%= link_to t("devise.shared.links.sign_up"), new_registration_path(resource_name),
+      class: "btn border border-[#FF6164] text-[#FF6164] bg-white hover:bg-[#FF6164]/10 px-6 py-2 rounded-lg font-semibold" %>
+  </div><br />
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
