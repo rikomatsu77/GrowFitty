@@ -6,8 +6,8 @@
 
   <p class="mt-6 text-md text-[#4A6F6A] max-w-2xl mx-auto leading-relaxed">
     GrowFittyは、お子さまの成長に合わせて最適な服のサイズを予測するサービスです。<br>
-    生年月日・身長・体重・性別から、先の季節にぴったりなサイズを提案。<br>
-    コーディネート投稿やブックマーク機能で、楽しく効率的なお買い物をサポートします。
+    生年月日・身長・体重・性別から、先の季節にぴったりなサイズを提案します。<br>
+    <!-- コーディネート投稿やブックマーク機能で、楽しく効率的なお買い物をサポートします。 -->
   </p>
 </div>
 
@@ -28,3 +28,21 @@
     <% end %>
   </div>
 </section>
+
+<div class="my-8">
+  <h2 class="text-xl font-semibold mb-2 text-center">ゲスト用の使い方</h2>
+  <%= video_tag "guest_demo.mp4", controls: true, preload: "metadata", class: "mx-auto rounded-lg shadow-lg w-full max-w-xl" %>
+</div>
+
+<div class="my-8">
+  <h2 class="text-xl font-semibold mb-2 text-center">会員用の使い方</h2>
+
+  <!-- 補足説明ボックス -->
+  <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 text-sm px-4 py-3 rounded mb-4 max-w-2xl mx-auto shadow">
+    <p class="mb-1">・お子さまのプロフィールには、<span class="font-semibold">身長または体重いずれか</span>の情報を必ず入力してください。</p>
+    <p class="mb-1"> <span class="font-semibold">両方空欄</span>の場合は、サイズを予測できません。</p>
+    <p>・<span class="font-semibold">測定日と測定値</span>はセットで入力してください。</p>
+  </div>
+
+  <%= video_tag "member_demo.mp4", controls: true, preload: "metadata", class: "mx-auto rounded-lg shadow-lg w-full max-w-xl" %>
+</div>
