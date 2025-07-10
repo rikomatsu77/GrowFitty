@@ -5,7 +5,7 @@
   <%= form_with url: create_prediction_path, method: :post, local: true do |f| %>
     <div class="mb-4">
       <label class="block text-gray-700">性別 <span class="text-red-500">*</span></label>
-      <%= f.select :gender, [["男性", "male"], ["女性", "female"]], { prompt: "選択してください" }, class: "border p-2 rounded-lg w-full", required: true %>
+      <%= f.select :gender, [["男の子", "male"], ["女の子", "female"]], { prompt: "選択してください" }, class: "border p-2 rounded-lg w-full", required: true %>
     </div>
 
     <div class="mb-4">
