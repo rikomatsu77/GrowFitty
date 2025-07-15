@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :children, except: [:show]
   end
 
+  resources :posts, only: [:index]
+
   get "predictions/new", to: "predictions#new", as: :new_prediction
   post "predictions/create", to: "predictions#create", as: :create_prediction
   get "predictions/result", to: "predictions#result", as: :prediction_result
