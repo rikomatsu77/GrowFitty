@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      redirect_to posts_path, notice: '投稿が作成されました。'
+      redirect_to posts_path, notice: "投稿が作成されました。"
     else
       render :new
     end
