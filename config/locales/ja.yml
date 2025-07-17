@@ -9,7 +9,13 @@ ja:
               not_a_number: "測定値は数値で入力してください"
             measured_on:
               blank: "測定日を入力してください"
+        post:
+          attributes:
+            user:
+              required: "ログインしてから投稿してください"
     attributes:
       measurement:
         value: "測定値"
         measured_on: "測定日"
+      post:
+        user: ""
