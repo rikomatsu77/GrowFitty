@@ -1,0 +1,29 @@
+<h1>新しい投稿</h1>
+
+<% if @post.errors.any? %>
+  <div class="mt-4">
+    <h2 class="text-red-600">投稿にエラーがあります:</h2>
+    <ul class="list-disc list-inside text-red-600"></ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @post, local: true, data: { turbo: false } do |form| %>
+  <div class="mb-4"></div>
+    <%= form.label :title, "タイトル", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :title, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+    </div>
+    <div class="mb-4">
+    <%= form.label :body, "本文", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_area :body, rows: 5, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+  </div>
+    <div class="mb-4">
+        <%= form.submit "投稿する", class: "btn px-6 py-3 w-full text-lg shadow-lg text-white bg-[#4AA398] hover:bg-[#3e8f8e] transition-colors duration-200" %>
+    </div>
+<% end %>
+<div class="mt-4">
+  <%= link_to '戻る', posts_path, class: 'btn px-6 py-3 w-full text-lg shadow-lg text-white bg-[#EF6C00] hover:bg-[#d95f00] transition-colors duration-200' %>
+</div>
