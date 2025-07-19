@@ -2,8 +2,15 @@
 
 <% @posts.each do |post| %>
   <div class="post bg-[#FFFCF4] border border-[#F0EAD6] rounded-lg p-6 mb-6 shadow">
-    <h2 class="text-xl font-semibold text-[#3F8378] mb-2"><%= post.title %></h2>
-    <p class="text-[#4A6F6A]"><%= post.body %></p>
+    <% if post.title.present? %>
+      <h2 class="text-xl font-semibold text-[#3F8378] mb-2">
+        <%= link_to post.title, post_path(post), class: "hover:underline text-[#3F8378]" %>
+      </h2>
+    <% end %>
+
+    <% if post.body.present? %>
+      <p class="text-[#4A6F6A]"><%= post.body %></p>
+    <% end %>
   </div>
 <% end %>
 
