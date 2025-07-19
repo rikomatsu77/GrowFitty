@@ -18,6 +18,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.includes(:user).find(params[:id])
+  end
+
+
   private
 
   def post_params

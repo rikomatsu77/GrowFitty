@@ -1,0 +1,36 @@
+<h1 class="text-2xl font-bold text-[#2D4F4B] text-center mb-8">コーディネート詳細</h1>
+
+<div class="relative post bg-[#FFFCF4] border border-[#F0EAD6] rounded-lg p-6 mb-6 shadow">
+  <!-- 投稿者名 -->
+  <p class="text-sm text-[#7A736A] mb-2">投稿者: <%= @post.user.user_name %></p>
+
+  <!-- 編集・削除アイコン（投稿者本人のみ表示） -->
+  <% if user_signed_in? && current_user == @post.user %>
+    <div class="absolute top-4 right-4 flex gap-3 text-[#4AA398]">
+      <%= link_to "#", title: '編集', class: 'hover:text-[#2D4F4B]' do %>
+        <i class="fas fa-edit fa-lg"></i>
+      <% end %>
+      <%= link_to "#", method: :delete, data: { confirm: '本当に削除しますか？' }, title: '削除', class: 'hover:text-red-600' do %>
+        <i class="fas fa-trash-alt fa-lg"></i>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @post.title.present? %>
+    <h2 class="text-xl font-semibold text-[#3F8378] mb-2">
+      <%= @post.title %>
+    </h2>
+  <% end %>
+
+  <% if @post.body.present? %>
+    <p class="text-[#4A6F6A] mb-4">
+      <%= @post.body %>
+    </p>
+  <% end %>
+
+  <p class="text-xs text-[#7A736A]">投稿日: <%= @post.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+</div>
+
+<div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
+  <%= link_to '一覧に戻る', posts_path, class: 'btn px-6 py-3 w-64 text-lg shadow-lg text-white bg-[#4AA398] hover:bg-[#3e8f8e] transition-colors duration-200' %>
+</div>
