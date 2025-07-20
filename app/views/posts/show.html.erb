@@ -10,7 +10,9 @@
       <%= link_to edit_post_path(@post), title: '編集', class: 'hover:text-[#2D4F4B]' do %>
         <i class="fas fa-edit fa-lg"></i>
       <% end %>
-      <%= link_to "#", method: :delete, data: { confirm: '本当に削除しますか？' }, title: '削除', class: 'hover:text-red-600' do %>
+      <%= link_to post_path(@post),
+            data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' },
+            class: "hover:text-red-600", title: "削除" do %>
         <i class="fas fa-trash-alt fa-lg"></i>
       <% end %>
     </div>
