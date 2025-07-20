@@ -7,7 +7,7 @@
   <!-- 編集・削除アイコン（投稿者本人のみ表示） -->
   <% if user_signed_in? && current_user == @post.user %>
     <div class="absolute top-4 right-4 flex gap-3 text-[#4AA398]">
-      <%= link_to "#", title: '編集', class: 'hover:text-[#2D4F4B]' do %>
+      <%= link_to edit_post_path(@post), title: '編集', class: 'hover:text-[#2D4F4B]' do %>
         <i class="fas fa-edit fa-lg"></i>
       <% end %>
       <%= link_to "#", method: :delete, data: { confirm: '本当に削除しますか？' }, title: '削除', class: 'hover:text-red-600' do %>

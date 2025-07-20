@@ -18,6 +18,12 @@
   </head>
 
   <body>
+    <% flash.each do |key, message| %>
+      <div class="mb-4 text-white px-4 py-3 rounded shadow 
+                  <%= key == 'notice' ? 'bg-[#4AA398]' : 'bg-red-600' %>">
+        <%= message %>
+      </div>
+    <% end %>
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% else %>
