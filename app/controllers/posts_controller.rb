@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
-  # 投稿者本人かをチェック：編集・更新のみ対象
-  before_action :authorize_post_owner, only: [:edit, :update]
+  # 投稿者本人かをチェック：編集・更新・削除のみ対象
+  before_action :authorize_post_owner, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.includes(:user)
@@ -36,6 +36,11 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to posts_path, notice: "投稿を削除しました。"
   end
 
   private
