@@ -6,6 +6,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WMMNJ23082"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WMMNJ23082');
+    </script>
     <script src="https://kit.fontawesome.com/44662b7460.js" crossorigin="anonymous"></script>
     <%= yield :head %>
 
