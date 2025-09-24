@@ -17,6 +17,10 @@ ja:
         measurement_type: "測定タイプ"
         value: "値"
         measured_on: "測定日"
+      post:
+        title: "タイトル"
+        body: "本文"
+        post_image: "服の写真"
     errors:
       models:
         user:

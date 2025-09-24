@@ -1,7 +1,22 @@
 <h1 class="text-2xl font-bold text-[#2D4F4B] text-center mb-8">コーディネート一覧</h1>
 
+<div class="max-w-2xl mx-auto">
 <% @posts.each do |post| %>
   <div class="post bg-[#FFFCF4] border border-[#F0EAD6] rounded-lg p-6 mb-6 shadow">
+    <div class="card-body p-4 sm:p-6">
+      <!-- 画像表示エリア -->
+      <div class="w-full h-40 sm:h-48 md:h-52 lg:h-56 bg-base-200 rounded-lg overflow-hidden mb-4 flex items-center justify-center">
+        <% if post.post_image.present? %>
+          <%= image_tag post.post_image.url,
+            alt: "#{post.title}の投稿画像",
+            class: "max-w-full max-h-full object-contain" %>
+        <% else %>
+          <%= image_tag "post_placeholder.png",
+            alt: "投稿画像なし",
+            class: "max-w-full max-h-full object-contain" %>
+        <% end %>
+      </div>
+
     <% if post.title.present? %>
       <h2 class="text-xl font-semibold text-[#3F8378] mb-2">
         <%= link_to post.title, post_path(post), class: "hover:underline text-[#3F8378]" %>
@@ -11,13 +26,14 @@
     <% if post.body.present? %>
       <p class="text-[#4A6F6A]"><%= post.body %></p>
     <% end %>
+    </div>
   </div>
 <% end %>
+</div>
 
-<!-- 投稿ボタン -->
-<div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8">
-  <%= link_to '新しいコーディネートを投稿する', new_post_path, class: 'btn px-6 py-3 w-72 text-lg shadow-lg text-white bg-[#EF6C00] hover:bg-[#d95f00] transition-colors duration-200' %>
-
+<div class="flex flex-col md:flex-row justify-center items-center gap-4 mt-8 mb-16 py-12">
   <!-- 戻るボタン -->
-  <%= link_to '戻る', root_path, class: 'btn px-6 py-3 w-64 text-lg shadow-lg text-white bg-[#4AA398] hover:bg-[#3e8f8e] transition-colors duration-200' %>
+  <%= link_to "戻る", root_path, class: "btn px-6 py-3 w-64 text-lg shadow-lg text-white bg-[#4AA398] hover:bg-[#3e8f8e] transition-colors duration-200" %>
+  <!-- 新規投稿ボタン -->
+  <%= link_to "新しいコーディネートを投稿する", new_post_path, class: "btn px-6 py-3 w-72 text-lg shadow-lg text-white bg-[#EF6C00] hover:bg-[#d95f00] transition-colors duration-200" %>
 </div>

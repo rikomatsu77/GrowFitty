@@ -1,32 +1,87 @@
-<h1>投稿内容の編集</h1>
+<h1 class="text-2xl font-bold text-[#2D4F4B] text-center mb-8">投稿内容の編集</h1>
 
-<% if @post.errors.any? %>
-  <div class="mt-4">
-    <h2 class="text-red-600">投稿にエラーがあります:</h2>
-    <ul class="list-disc list-inside text-red-600">
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="max-w-4xl mx-auto">
+<div class="bg-[#FFFCF4] border border-[#F0EAD6] rounded-lg p-6 mb-6 shadow">
+  <% if @post.errors.any? %>
+    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <h2 class="text-red-600 font-semibold mb-2">投稿にエラーがあります:</h2>
+      <ul class="list-disc list-inside text-red-600">
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with model: @post, local: true, data: { turbo: false } do |form| %>
+    <div class="mb-6">
+      <%= form.label :title, "タイトル", class: "block text-sm font-medium text-[#2D4F4B] mb-2" %>
+      <%= form.text_field :title, class: "w-full px-3 py-2 border border-[#F0EAD6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4AA398] focus:border-transparent" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :body, "本文", class: "block text-sm font-medium text-[#2D4F4B] mb-2" %>
+      <%= form.text_area :body, rows: 5, class: "w-full px-3 py-2 border border-[#F0EAD6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4AA398] focus:border-transparent" %>
+    </div>
+
+    <!-- 写真編集セクション -->
+    <div class="mb-6">
+      <%= form.label :post_image, "写真", class: "block text-sm font-medium text-[#2D4F4B] mb-2" %>
+
+      <!-- 現在の写真表示 -->
+      <% if @post.post_image.present? %>
+        <div class="mb-3">
+          <p class="text-sm text-[#7A736A] mb-2">現在の写真:</p>
+          <div class="w-48 h-32 bg-gray-50 rounded-lg overflow-hidden shadow-sm flex items-center justify-center border border-[#F0EAD6]">
+            <%= image_tag @post.post_image.url,
+                alt: "現在の写真",
+                class: "max-w-full max-h-full object-contain" %>
+          </div>
+        </div>
+      <% else %>
+        <p class="text-sm text-[#7A736A] mb-2">現在写真は設定されていません</p>
       <% end %>
-    </ul>
-  </div>
-<% end %>
 
-<%= form_with model: @post, local: true, data: { turbo: false } do |form| %>
-  <div class="mb-4">
-    <%= form.label :title, "タイトル", class: "block text-sm font-medium text-gray-700" %>
-    <%= form.text_field :title, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
-  </div>
+      <!-- 新しい写真のアップロード -->
+      <div class="mb-4">
+  <%= form.file_field :post_image,
+      accept: "image/*",
+      class: "hidden",
+      id: "post_image_input",
+      onchange: "updateLabel(this)" %>
 
-  <div class="mb-4">
-    <%= form.label :body, "本文", class: "block text-sm font-medium text-gray-700" %>
-    <%= form.text_area :body, rows: 5, class: "mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
-  </div>
-
-  <div class="mb-4">
-    <%= form.submit "更新", class: "btn px-6 py-3 w-full text-lg shadow-lg text-white bg-[#4AA398] hover:bg-[#3e8f8e] transition-colors duration-200" %>
-  </div>
-<% end %>
-
-<div class="mt-4">
-  <%= link_to '詳細に戻る', post_path(@post), class: 'btn px-6 py-3 w-full text-lg shadow-lg text-white bg-[#EF6C00] hover:bg-[#d95f00] transition-colors duration-200' %>
+  <label for="post_image_input" class="w-full px-4 py-3 border-2 border-dashed border-[#4AA398] rounded-lg bg-[#F8FFFE] hover:bg-[#F0FFFE] transition-colors duration-200 cursor-pointer text-center block">
+    <div class="flex items-center justify-center space-x-2">
+      <span class="text-2xl">📷</span>
+      <span class="text-[#2D4F4B] font-medium" id="upload_text">新しい写真を選択</span>
+    </div>
+    <p class="text-sm text-[#7A736A] mt-1" id="upload_desc">クリックしてファイルを選択してください</p>
+  </label>
 </div>
+
+<%= form.hidden_field :post_image_cache %>
+
+<script>
+function updateLabel(input) {
+  const uploadText = document.getElementById("upload_text");
+  const uploadDesc = document.getElementById("upload_desc");
+
+  if (input.files && input.files[0]) {
+    uploadText.textContent = "選択済み: " + input.files[0].name;
+    uploadDesc.textContent = "別のファイルを選択する場合はクリック";
+  } else {
+    uploadText.textContent = "新しい写真を選択";
+    uploadDesc.textContent = "クリックしてファイルを選択してください";
+  }
+}
+</script>
+
+    <div class="flex justify-center mt-8">
+      <%= form.submit "更新", class: "btn px-6 py-3 w-64 text-lg shadow-lg text-white bg-[#EF6C00] hover:bg-[#d95f00] transition-colors duration-200 flex items-center justify-center leading-none" %>
+    </div>
+  <% end %>
+  </div>
+</div>
+    <div class="flex justify-center mt-4">
+      <%= link_to "詳細に戻る", post_path(@post), class: "btn px-6 py-3 w-64 text-lg shadow-lg text-white bg-[#4AA398] hover:bg-[#3e8f8e] transition-colors duration-200" %>
+    </div>
