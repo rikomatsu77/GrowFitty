@@ -44,7 +44,7 @@ gem "devise-i18n-views"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
-gem "carrierwave", "2.2.2"
+gem "carrierwave", "3.1.2"
 
 gem "fog-aws"
 
