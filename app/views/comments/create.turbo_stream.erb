@@ -1,0 +1,16 @@
+<% if @comment.errors.present? %>
+  <%= turbo_stream.replace "comment-form-#{@comment.post.id}" do %>
+    <div id="comment-form-<%= @comment.post.id %>">
+      <%= render "comments/form", comment: @comment, post: @comment.post %>
+    </div>
+  <% end %>
+<% else %>
+  <%= turbo_stream.prepend "comments-list-#{@comment.post.id}" do %>
+    <%= render "comments/comment", comment: @comment %>
+  <% end %>
+  <%= turbo_stream.replace "comment-form-#{@comment.post.id}" do %>
+    <div id="comment-form-<%= @comment.post.id %>">
+      <%= render "comments/form", comment: Comment.new, post: @comment.post %>
+    </div>
+  <% end %>
+<% end %>

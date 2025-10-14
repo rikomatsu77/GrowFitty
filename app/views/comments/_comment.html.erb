@@ -1,0 +1,28 @@
+<div class="bg-[#FFFCF4] border border-[#F0EAD6] rounded-lg p-4 mb-4 shadow" id="comment-<%= comment.id %>">
+  <div class="mb-2">
+    <div class="flex items-center justify-between">
+      <h4 class="text-sm font-medium text-[#2D4F4B]">
+        <%= comment.user.user_name %>
+      </h4>
+      <span class="text-xs text-[#7A736A]">
+        <%= comment.created_at.strftime("%Y年%m月%d日 %H:%M") %>
+      </span>
+    </div>
+  </div>
+  
+  <p class="text-[#4A6F6A] text-sm leading-relaxed">
+    <%= simple_format(comment.body) %>
+  </p>
+  
+  <!-- 編集・削除ボタン -->
+  <% if user_signed_in? && current_user == comment.user %>
+    <div class="flex gap-2 mt-2">
+      <%= link_to edit_comment_path(comment), class: "text-[#4AA398] hover:text-[#2D4F4B] text-xs", data: { turbo_stream: true } do %>
+        <i class="fas fa-edit"></i> 編集
+      <% end %>
+      <%= link_to comment_path(comment), class: "text-red-500 hover:text-red-700 text-xs ml-2", data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } do %>
+        <i class="fas fa-trash-alt"></i> 削除
+      <% end %>
+    </div>
+  <% end %>
+</div>

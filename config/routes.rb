@@ -10,7 +10,9 @@ Rails.application.routes.draw do
     resources :children, except: [:show]
   end
 
-  resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+    resources :comments, only: [:create, :show, :edit, :update, :destroy], shallow: true
+  end
 
   get "predictions/new", to: "predictions#new", as: :new_prediction
   post "predictions/create", to: "predictions#create", as: :create_prediction

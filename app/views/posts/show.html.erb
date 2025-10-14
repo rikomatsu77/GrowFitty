@@ -44,6 +44,26 @@
     </p>
   <% end %>
 
+  <!-- コメントセクション -->
+<div class="mt-8 border-t border-[#F0EAD6] pt-6">
+  <!-- コメント表示 -->
+  <% if @comments.any? %>
+    <div class="mb-6">
+      <h3 class="text-lg font-semibold text-[#2D4F4B] mb-4">
+        コメント
+      </h3>
+      <div id="comments-list-<%= @post.id %>">
+        <%= render @comments %>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- コメント投稿フォーム -->
+  <div id="comment-form-<%= @post.id %>">
+    <%= render "comments/form", comment: @comment, post: @post %>
+  </div>
+</div>
+
   <p class="text-xs text-[#7A736A]">投稿日: <%= @post.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
 </div>
 
