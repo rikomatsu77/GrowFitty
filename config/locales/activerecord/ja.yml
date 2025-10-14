@@ -4,6 +4,7 @@ ja:
       user: "ユーザー"
       child: "お子さま"
       measurement: "測定データ"
+      comment: "コメント"
     attributes:
       user:
         user_name: "ユーザー名"
@@ -21,6 +22,8 @@ ja:
         title: "タイトル"
         body: "本文"
         post_image: "服の写真"
+      comment:
+        body: "コメント"
     errors:
       models:
         user:
@@ -49,6 +52,12 @@ ja:
               not_a_number: "値は数値で入力してください"
             measured_on:
               blank: "測定日を入力してください"
+        comment:
+          attributes:
+            body:
+              blank: "を入力してください"
+            post:
+              required: "が必要です"
       messages:
         blank: "入力してください"
         not_a_number: "数値で入力してください"
