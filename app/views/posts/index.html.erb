@@ -1,8 +1,13 @@
 <h1 class="text-2xl font-bold text-[#2D4F4B] text-center mb-8">コーディネート一覧</h1>
 
 <div class="max-w-2xl mx-auto">
-<!-- 部分テンプレート -->
-  <%= render @posts %>
+<% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <%= render "post", post: post %>
+    <% end %>
+  <% else %>
+    <p class="text-center text-[#4A6F6A]">投稿がまだありません。</p>
+  <% end %>
 
   <div class="flex justify-center mt-8 mb-8">
     <%= paginate @posts %>
