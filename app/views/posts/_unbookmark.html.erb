@@ -1,0 +1,7 @@
+<%= link_to bookmark_path(current_user.bookmarks.find_by(post_id: post.id)),
+      id: "unbookmark-button-for-post-#{post.id}",
+      title: "ブックマーク解除",
+      class: "hover:text-[#2D4F4B]",
+      data: { turbo_method: :delete } do %>
+  <i class="fas fa-bookmark fa-lg"></i>
+<% end %>
