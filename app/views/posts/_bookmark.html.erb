@@ -1,0 +1,7 @@
+<%= link_to bookmarks_path(post_id: post.id),
+      id: "bookmark-button-for-post-#{post.id}",
+      title: "ブックマーク",
+      class: "hover:text-[#2D4F4B]",
+      data: { turbo_method: :post } do %>
+  <i class="far fa-bookmark fa-lg"></i>
+<% end %>

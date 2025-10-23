@@ -7,17 +7,17 @@
 
   <!-- 編集・削除アイコン（投稿者本人のみ表示） -->
   <% if user_signed_in? && current_user == @post.user %>
-    <div class="absolute top-4 right-4 flex gap-3 text-[#4AA398]">
-      <%= link_to edit_post_path(@post), title: "編集", class: "hover:text-[#2D4F4B]" do %>
-        <i class="fas fa-edit fa-lg"></i>
-      <% end %>
-      <%= link_to post_path(@post),
-            data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
-            class: "hover:text-red-600", title: "削除" do %>
-        <i class="fas fa-trash-alt fa-lg"></i>
-      <% end %>
-    </div>
-  <% end %>
+  <div class="absolute top-4 right-4 flex gap-3 text-[#4AA398]">
+    <%= link_to edit_post_path(@post), title: "編集", class: "hover:text-[#2D4F4B]" do %>
+      <i class="fas fa-edit fa-lg"></i>
+    <% end %>
+    <%= link_to post_path(@post),
+        data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" },
+        class: "hover:text-red-600", title: "削除" do %>
+      <i class="fas fa-trash-alt fa-lg"></i>
+    <% end %>
+  </div>
+<% end %>
 
   <!-- 画像表示 -->
   <div class="w-full h-60 bg-gray-50 rounded-lg overflow-hidden shadow-sm mb-4 flex items-center justify-center">
@@ -32,17 +32,33 @@
   <% end %>
   </div>
 
-  <% if @post.title.present? %>
-    <h2 class="text-xl font-semibold text-[#3F8378] mb-2">
-      <%= @post.title %>
-    </h2>
-  <% end %>
+  <!-- タイトル・本文・ブックマークエリア -->
+  <div class="content-area">
+    <div class="flex items-start justify-between mb-2">
+      <div class="flex-1">
+        <% if @post.title.present? %>
+          <h2 class="text-xl font-semibold text-[#3F8378]">
+            <%= @post.title %>
+          </h2>
+        <% end %>
+      </div>
 
-  <% if @post.body.present? %>
-    <p class="text-[#4A6F6A] mb-4">
-      <%= @post.body %>
-    </p>
-  <% end %>
+      <!-- ブックマークボタン（他人の投稿のみ） -->
+      <% if user_signed_in? && !current_user.own?(@post) %>
+        <div class="ml-4 flex-shrink-0">
+          <%= render "bookmark_buttons", post: @post %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- 本文 -->
+    <% if @post.body.present? %>
+      <p class="text-[#4A6F6A] mb-4">
+        <%= @post.body %>
+      </p>
+    <% end %>
+  </div>
+
 
   <!-- コメントセクション -->
 <div class="mt-8 border-t border-[#F0EAD6] pt-6">

@@ -12,7 +12,12 @@ Rails.application.routes.draw do
 
   resources :posts, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :comments, only: [:create, :show, :edit, :update, :destroy], shallow: true
+    collection do
+      get :bookmarks
+    end
   end
+
+  resources :bookmarks, only: [:create, :destroy]
 
   get "predictions/new", to: "predictions#new", as: :new_prediction
   post "predictions/create", to: "predictions#create", as: :create_prediction

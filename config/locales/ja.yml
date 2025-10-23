@@ -25,3 +25,12 @@ ja:
         measured_on: "測定日"
       post:
         user: ""
+  posts:
+    bookmarks:
+      title: "ブックマーク一覧"
+      no_result: "ブックマークした投稿がありません"
+  bookmarks:
+    create:
+      success: "ブックマークしました"
+    destroy:
+      success: "ブックマークを外しました"
