@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
-    tag_list = (params[:post][:tag_names] || '').split(',')
+    tag_list = (params[:post][:tag_names] || "").split(",")
 
     if @post.save
       @post.save_post_tags(tag_list)
@@ -32,11 +32,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @tag_list = @post.tags.pluck(:name).join(',')
+    @tag_list = @post.tags.pluck(:name).join(",")
   end
 
   def update
-    tag_list = (params[:post][:tag_names] || '').split(',').map(&:strip).reject(&:blank?)
+    tag_list = (params[:post][:tag_names] || "").split(",").map(&:strip).reject(&:blank?)
     if @post.update(post_params)
       @post.save_post_tags(tag_list)
       redirect_to post_path(@post), notice: "投稿が更新されました。"
