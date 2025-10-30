@@ -61,6 +61,50 @@
 
 <%= form.hidden_field :post_image_cache %>
 
+    <!-- タグ入力フィールド -->
+    <div class="mb-6">
+      <%= form.label :tag_names, "タグ", class: "block text-sm font-medium text-[#2D4F4B] mb-2" %>
+      <%= form.text_field :tag_names,
+          value: @tag_list,
+          placeholder: "タグをカンマ区切りで入力（例：春服,カジュアル,90cm,お出かけ）",
+          class: "w-full px-3 py-2 border border-[#F0EAD6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4AA398] focus:border-transparent" %>
+
+      <!-- 現在のタグ表示 -->
+      <% if @tag_list.present? %>
+        <div class="mt-3 p-3 bg-[#E8F5F3] border border-[#4AA398] rounded-lg">
+          <p class="text-sm text-[#2D4F4B] font-medium mb-2 flex items-center">
+            <span class="text-base mr-2">🏷️</span>
+            現在設定されているタグ
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <% @tag_list.split(',').each do |tag| %>
+              <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#F8FFFE] border border-[#4AA398] text-[#2D4F4B]">
+                <span class="mr-1">#</span><%= tag.strip %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <div class="mt-3 p-3 bg-[#F5F5F5] border border-[#E0E0E0] rounded-lg">
+          <p class="text-sm text-[#7A736A] flex items-center">
+            <span class="text-base mr-2">ℹ️</span>
+            現在タグは設定されていません
+          </p>
+        </div>
+      <% end %>
+      
+      <div class="mt-3 p-3 bg-[#F8FFFE] border border-[#E0F7F4] rounded-lg">
+        <p class="text-sm text-[#2D4F4B] font-medium mb-1">💡 タグ編集のコツ</p>
+        <ul class="text-xs text-[#7A736A] space-y-1">
+          <li>• <strong>追加:</strong> 新しいタグをカンマで区切って追加</li>
+          <li>• <strong>削除:</strong> 不要なタグを入力欄から削除</li>
+          <li>• <strong>修正:</strong> 既存のタグ名を直接編集</li>
+          <li>• <strong>例:</strong> 春服,カジュアル,90cm,お出かけ</li>
+        </ul>
+      </div>
+    </div>
+
+
 <script>
 function updateLabel(input) {
   const uploadText = document.getElementById("upload_text");
