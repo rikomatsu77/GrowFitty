@@ -15,8 +15,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user = current_user
+    tag_list = (params[:post][:tag_names] || '').split(',')
 
     if @post.save
+      @post.save_post_tags(tag_list)
       redirect_to posts_path, notice: "投稿が作成されました。"
     else
       render :new
@@ -30,10 +32,13 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
+    tag_list = (params[:post][:tag_names] || '').split(',').map(&:strip).reject(&:blank?)
     if @post.update(post_params)
+      @post.save_post_tags(tag_list)
       redirect_to post_path(@post), notice: "投稿が更新されました。"
     else
       render :edit
@@ -52,7 +57,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_image, :post_image_cache)
+    params.require(:post).permit(:title, :body, :post_image, :post_image_cache, :tag_names)
   end
 
   def authorize_post_owner

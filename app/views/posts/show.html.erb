@@ -59,6 +59,29 @@
     <% end %>
   </div>
 
+    <!-- タグ表示 -->
+      <% if @post.tags.any? %>
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-[#2D4F4B] mb-3">
+            <span class="inline-flex items-center">
+              <span class="text-xl mr-2">🏷️</span>
+              タグ
+            </span>
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            <% @post.tags.each do |tag| %>
+              <%= link_to posts_path(tag: tag.name),
+                  class: "inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#F8FFFE] border border-[#4AA398] text-[#2D4F4B] hover:bg-[#4AA398] hover:text-white transition-colors duration-200" do %>
+                <span class="mr-1">#</span><%= tag.name %>
+              <% end %>
+            <% end %>
+          </div>
+          <p class="text-xs text-[#7A736A] mt-2">
+            💡 タグをクリックすると同じタグの投稿を見ることができます
+          </p>
+        </div>
+      <% end %>
+
 
   <!-- コメントセクション -->
 <div class="mt-8 border-t border-[#F0EAD6] pt-6">
