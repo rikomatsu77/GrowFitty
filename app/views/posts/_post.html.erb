@@ -27,21 +27,29 @@
 
     <!-- タグ表示 -->
     <% if post.tags.any? %>
-      <div class="mb-4">
-        <div class="flex flex-wrap gap-2">
-          <% post.tags.limit(4).each do |tag| %>
-            <%= link_to posts_path(tag: tag.name),
-                class: "inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#F8FFFE] border border-[#4AA398] text-[#2D4F4B] hover:bg-[#4AA398] hover:text-white transition-colors duration-200" do %>
-              <span class="mr-1">#</span><%= tag.name %>
-            <% end %>
+    <div class="mb-4">
+      <div class="flex flex-wrap gap-2">
+        <% post.tags.limit(4).each do |tag| %>
+          <%
+            # 現在のページに応じてリンク先を変更
+            tag_url = if local_assigns[:current_page] == :bookmarks
+                        bookmarks_posts_path(tag: tag.name)
+                      else
+                        posts_path(tag: tag.name)
+                      end
+          %>
+          <%= link_to tag_url,
+              class: "inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#F8FFFE] border border-[#4AA398] text-[#2D4F4B] hover:bg-[#4AA398] hover:text-white transition-colors duration-200" do %>
+            <span class="mr-1">#</span><%= tag.name %>
           <% end %>
-          <% if post.tags.count > 4 %>
-            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#F0EAD6] text-[#7A736A]">
-              +<%= post.tags.count - 4 %>個
-            </span>
-          <% end %>
-        </div>
+        <% end %>
+        <% if post.tags.count > 4 %>
+          <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[#F0EAD6] text-[#7A736A]">
+            +<%= post.tags.count - 4 %>個
+          </span>
+        <% end %>
       </div>
+    </div>
     <% end %>
 
     <!-- ブックマークボタン（ログインユーザーかつ他人の投稿のみ） -->

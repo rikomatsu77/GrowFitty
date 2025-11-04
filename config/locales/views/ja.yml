@@ -1,5 +1,7 @@
 ja:
   views:
+    defaults:
+      search_word: "タイトルまたは本文で検索"
     members:
       mypages:
         show:

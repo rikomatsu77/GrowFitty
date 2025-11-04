@@ -5,7 +5,14 @@ class PostsController < ApplicationController
   before_action :authorize_post_owner, only: [:edit, :update, :destroy]
 
   def index
-     @posts = Post.includes(:user).order(created_at: :desc).page(params[:page])
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true).includes(:user, :tags).order(created_at: :desc).page(params[:page])
+
+    # タグでの絞り込み
+    if params[:tag].present?
+      @posts = @posts.joins(:tags).where(tags: { name: params[:tag] })
+    end
+    @selected_tag = params[:tag]
   end
 
   def new
@@ -51,7 +58,14 @@ class PostsController < ApplicationController
   end
 
   def bookmarks
-    @bookmark_posts = current_user.bookmark_posts.includes(:user).order(created_at: :desc)
+    @q = current_user.bookmark_posts.ransack(params[:q])
+    @bookmark_posts = @q.result(distinct: true).includes(:user, :tags).order(created_at: :desc)
+
+    # タグでの絞り込み
+    if params[:tag].present?
+      @bookmark_posts = @bookmark_posts.joins(:tags).where(tags: { name: params[:tag] })
+    end
+    @selected_tag = params[:tag]
   end
 
   private

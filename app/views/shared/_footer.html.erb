@@ -6,14 +6,14 @@
       <span class="whitespace-nowrap text-[12px]">ホーム</span>
     <% end %>
 
-    <%= link_to "#", class: "flex flex-col items-center text-white text-xs" do %>
+    <%= link_to posts_path, class: "flex flex-col items-center text-white text-xs" do %>
       <i class="fa-solid fa-magnifying-glass text-2xl"></i>
-      <span class="whitespace-nowrap text-[12px]">検索（改修中）</span>
+      <span class="whitespace-nowrap text-[12px]">検索</span>
     <% end %>
 
-    <%= link_to "#", class: "flex flex-col items-center text-white text-xs" do %>
+    <%= link_to new_post_path, class: "flex flex-col items-center text-white text-xs" do %>
       <i class="fa-solid fa-square-plus text-2xl"></i>
-      <span class="whitespace-nowrap text-[12px]">投稿（改修中）</span>
+      <span class="whitespace-nowrap text-[12px]">投稿</span>
     <% end %>
 
     <%= link_to bookmarks_posts_path, class: "flex flex-col items-center text-white text-xs" do %>
