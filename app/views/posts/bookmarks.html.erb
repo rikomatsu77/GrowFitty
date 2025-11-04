@@ -3,11 +3,36 @@
 </h1>
 
 <div class="max-w-2xl mx-auto">
+<% if @selected_tag.present? %>
+    <div class="mb-6 p-4 bg-[#E8F5F3] rounded-lg border border-[#4AA398]">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center">
+          <span class="text-[#2D4F4B] font-medium">絞り込み中のタグ:</span>
+          <span class="ml-2 px-3 py-1 bg-[#4AA398] text-white rounded-full text-sm">
+            #<%= @selected_tag %>
+          </span>
+        </div>
+        <%= link_to "絞り込み解除", bookmarks_posts_path(q: { title_or_body_cont: params.dig(:q, :title_or_body_cont) }.compact),
+            class: "text-[#EF6C00] hover:text-[#d95f00] font-medium underline" %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render "search_form", q: @q, url: bookmarks_posts_path %>
+
   <% if @bookmark_posts.present? %>
-    <%= render @bookmark_posts %>
+    <% @bookmark_posts.each do |post| %>
+      <%= render "post", post: post, current_page: :bookmarks %>
+    <% end %>
   <% else %>
-    <p class="text-center text-[#7A736A]">
-      <%= t(".no_result") %>
-    </p>
+    <% if @selected_tag.present? %>
+      <p class="text-center text-[#7A736A]">
+        「#<%= @selected_tag %>」タグのブックマーク投稿が見つかりませんでした。
+      </p>
+    <% else %>
+      <p class="text-center text-[#7A736A]">
+        <%= t(".no_result") %>
+      </p>
+    <% end %>
   <% end %>
 </div>

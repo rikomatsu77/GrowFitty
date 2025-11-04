@@ -22,4 +22,12 @@ class Post < ApplicationRecord
       self.tags << tag
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [ "title", "body" ]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    [ "bookmarks", "post_tags", "tags", "user" ]
+  end
 end
