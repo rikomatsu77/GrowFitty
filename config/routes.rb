@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :show, :edit, :update, :destroy], shallow: true
     collection do
       get :bookmarks
+      get :tags
     end
   end
 
