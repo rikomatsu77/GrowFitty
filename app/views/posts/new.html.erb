@@ -25,7 +25,9 @@
       </div>
 
       <div class="mb-6">
-        <%= form.label :post_image, "写真", class: "block text-sm font-medium text-[#2D4F4B] mb-2" %>
+        <label for="post_image_input" class="block text-sm font-medium text-[#2D4F4B] mb-2">
+          写真
+        </label>
 
       <div class="mb-4">
           <%= form.file_field :post_image,
@@ -46,10 +48,20 @@
       </div>
 
       <div class="mb-6">
-        <%= form.label :tag_names, "タグ", class: "block text-sm font-medium text-[#2D4F4B] mb-2" %>
-        <%= form.text_field :tag_names,
+        <%= form.label :tag_list, "タグ",
+              for: "post_tag_list",
+              class: "block text-sm font-medium text-[#2D4F4B] mb-2" %>
+
+        <%= form.text_field :tag_list,
+            id: "post_tag_list",
             placeholder: "タグをカンマ区切りで入力（例：春服,カジュアル,90cm,お出かけ）",
-            class: "w-full px-3 py-2 border border-[#F0EAD6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4AA398] focus:border-transparent" %>
+            class: "input input-bordered w-full px-3 py-2 border border-[#F0EAD6] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4AA398] focus:border-transparent mt-2",
+            data: {
+              controller: "tagify",
+              tagify_target: "input",
+              tagify_whitelist_url: "/posts/tags.json"
+            } %>
+
         <div class="mt-2 p-3 bg-[#F8FFFE] border border-[#E0F7F4] rounded-lg">
           <p class="text-sm text-[#2D4F4B] font-medium mb-1">💡 タグ入力のコツ</p>
           <ul class="text-xs text-[#7A736A] space-y-1">

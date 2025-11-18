@@ -68,6 +68,11 @@ class PostsController < ApplicationController
     @selected_tag = params[:tag]
   end
 
+  def tags
+    tags = Tag.pluck(:name).uniq.sort
+    render json: tags
+  end
+
   private
 
   def post_params
