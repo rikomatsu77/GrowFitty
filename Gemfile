@@ -45,7 +45,7 @@ gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth-line"
 
-gem "carrierwave", "2.2.2"
+gem "carrierwave", "3.1.2"
 
 gem "fog-aws"
 
