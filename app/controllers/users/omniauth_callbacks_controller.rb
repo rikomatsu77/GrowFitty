@@ -1,11 +1,21 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  skip_before_action :verify_authenticity_token, only: :google_oauth2
+  skip_before_action :verify_authenticity_token, only: [ :google_oauth2, :line ]
 
   def google_oauth2
     callback_for(:google)
   end
+
+  def line
+    callback_for(:line)
+  end
+
+  def failure
+    redirect_to root_path, alert: "ログインがキャンセルされました。"
+  end
+
+  private
 
   def callback_for(provider)
     @user = User.from_omniauth(request.env["omniauth.auth"])
@@ -18,9 +28,5 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session["devise.#{provider}_data"] = request.env["omniauth.auth"].except(:extra)
       redirect_to new_user_registration_url
     end
-  end
-
-  def failure
-    redirect_to root_path
   end
 end

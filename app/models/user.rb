@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: [ :google_oauth2 ]
+         :omniauthable, omniauth_providers: [ :google_oauth2, :line ]
 
   has_many :children, dependent: :destroy
   has_many :posts, dependent: :destroy
@@ -17,10 +17,23 @@ class User < ApplicationRecord
   end
 
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
+  validates :email, presence: true, unless: -> { provider.present? }
+  validates :email, uniqueness: true
+
 
   def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    user.email = auth.info.email
+    user.provider = auth.provider
+    user.uid = auth.uid
+
+      # メールアドレスの処理（LINEは提供しない場合があるため）
+      if auth.info.email.present?
+        user.email = auth.info.email
+      else
+        # LINEの場合、ダミーメールアドレスを生成
+        user.email = "#{auth.provider}-#{auth.uid}@example.com"
+      end
+
     user.password = Devise.friendly_token[0, 20]
     end
   end
