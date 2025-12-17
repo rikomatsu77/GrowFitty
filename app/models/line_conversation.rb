@@ -3,7 +3,7 @@ class LineConversation < ApplicationRecord
 
   validates :line_user_id, presence: true
   validates :status, presence: true
-  
+
   enum gender: { male: 0, female: 1 }
   enum measurement_type: { height: 0, weight: 1 }
 
