@@ -33,24 +33,24 @@ class LineBotController < ApplicationController
       config.channel_token  = ENV["LINE_CHANNEL_TOKEN"]
     end
   end
-  
+
   def handle_text_message(event)
     # LINEユーザーIDを取得
     line_user_id = event["source"]["userId"]
-    
+
     # メッセージのテキストを取得（前後の空白を削除）
     text = event.message["text"].strip
-    
+
     # ユーザーの会話状態を取得または新規作成
     conversation = LineConversation.find_or_create_by(line_user_id: line_user_id)
-    
+
     # 「サイズ予測」で会話をリセット
     if text == "サイズ予測"
       conversation.reset!
       reply_message(event, ask_gender_message)
       return
     end
-    
+
     # 現在のステータスに応じて処理を分岐
     case conversation.status
     when "ask_gender"
@@ -101,12 +101,12 @@ class LineBotController < ApplicationController
   def handle_measurement_date(event, conversation, text)
     begin
       measurement_date = Date.parse(text)
-      
+
       if measurement_date < conversation.birth_date
         reply_message(event, "測定日は生年月日より後の日付を入力してください。")
         return
       end
-      
+
       conversation.update!(measurement_date: measurement_date, status: "ask_measurement_type")
       reply_message(event, ask_measurement_type_message)
     rescue ArgumentError
@@ -128,20 +128,20 @@ class LineBotController < ApplicationController
 
   def handle_value(event, conversation, text)
     value = text.to_f
-    
+
     if value <= 0
       reply_message(event, "正しい数値を入力してください。")
       return
     end
-    
+
     conversation.update!(value: value)
-    
+
     # 予測計算を実行
     result_message = calculate_prediction(conversation)
-    
+
     # 会話をリセット
     conversation.destroy
-    
+
     reply_message(event, result_message)
   end
 
@@ -154,9 +154,9 @@ class LineBotController < ApplicationController
       measurement_type: conversation.measurement_type,
       value: conversation.value
     )
-    
+
     seasonal_data, current_value = prediction.calculate
-    
+
     # 結果メッセージを作成して返す
     build_result_message(conversation, seasonal_data, current_value)
   end
@@ -164,23 +164,23 @@ class LineBotController < ApplicationController
   def build_result_message(conversation, seasonal_data, current_value)
     type_name = conversation.measurement_type == "height" ? "身長" : "体重"
     unit = conversation.measurement_type == "height" ? "cm" : "kg"
-    
+
     message = "📊 サイズ予測結果\n\n"
     message += "【測定結果】\n"
     message += "現在の#{type_name}: #{sprintf("%.1f", current_value)}#{unit}\n\n"
     message += "【今日の季節から1年先までの予測】\n"
-    
+
     # 今日からの日数順にソート(近い順)
     sorted_seasonal_data = seasonal_data.sort_by { |data| data[:days] }
-    
+
     sorted_seasonal_data.each do |season_data|
       season_name = translate_season(season_data[:season])
       predicted_value = sprintf("%.1f", season_data[:height])
       days = season_data[:days]
-      
+
       message += "#{season_name}: #{predicted_value}#{unit}(あと#{days}日)\n"
     end
-    
+
     message += "\n※この予測は統計データに基づく参考値です。"
     message
   end
