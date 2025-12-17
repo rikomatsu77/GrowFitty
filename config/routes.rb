@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post "members/predictions/create", to: "members/predictions#create", as: :members_create_prediction
   get "members/predictions/result", to: "members/predictions#result", as: :members_prediction_result
 
+  post "/callback", to: "line_bot#callback"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
