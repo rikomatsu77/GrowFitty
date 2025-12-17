@@ -4,7 +4,6 @@ class LineBotController < ApplicationController
   require "line/bot"
 
   def callback
-
   body = request.body.read
   signature = request.env["HTTP_X_LINE_SIGNATURE"]
 
@@ -47,9 +46,9 @@ class LineBotController < ApplicationController
     
     # 「サイズ予測」で会話をリセット
     if text == "サイズ予測"
-        conversation.reset!
-        reply_message(event, ask_gender_message)
-        return
+      conversation.reset!
+      reply_message(event, ask_gender_message)
+      return
     end
     
     # 現在のステータスに応じて処理を分岐
@@ -220,7 +219,6 @@ class LineBotController < ApplicationController
 
   def default_message
     "「サイズ予測」と入力して予測を開始してください。"
-
   end
 
   # メッセージ返信
