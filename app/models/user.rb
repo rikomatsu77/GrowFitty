@@ -18,10 +18,13 @@ class User < ApplicationRecord
     id == object&.user_id
   end
 
-  validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? }
+  validates :uid, presence: true, uniqueness: { scope: :provider }, if: :oauth_user?
   validates :email, presence: true, unless: -> { provider.present? }
   validates :email, uniqueness: true
 
+  def oauth_user?
+    provider.present?
+  end
 
   def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
