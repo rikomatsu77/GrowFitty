@@ -6,6 +6,9 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
 
+  validates :title, presence: true
+  validates :body, presence: true
+
   attr_accessor :tag_names
 
   def save_post_tags(tags)

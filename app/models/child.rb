@@ -20,16 +20,20 @@ class Child < ApplicationRecord
     measurements.where(measurement_type: "weight").order(measured_on: :desc).limit(1).pluck(:value).first
   end
 
-  # 最新の測定日（身長・体重両方を考慮）
+  # 最新の測定日（体重）
   def latest_measured_on_w
-    dates = measurements.where(measurement_type: ["weight"]).pluck(:measured_on)
-    dates.compact.max
+    measurements
+    .where(measurement_type: "weight")
+    .maximum(:measured_on)
+    &.to_date
   end
 
-  # 最新の測定日（身長・体重両方を考慮）
+  # 最新の測定日（身長）
   def latest_measured_on_h
-    dates = measurements.where(measurement_type: ["height"]).pluck(:measured_on)
-    dates.compact.max
+    measurements
+    .where(measurement_type: "height")
+    .maximum(:measured_on)
+    &.to_date
   end
 
 
