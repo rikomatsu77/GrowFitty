@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
     context "OAuthユーザー（Google）" do
       let(:user) { build(:user, :google_oauth) }
 
-      it "providerとuidがあれば有効"do
+      it "providerとuidがあれば有効" do
         expect(user).to be_valid
       end
 
