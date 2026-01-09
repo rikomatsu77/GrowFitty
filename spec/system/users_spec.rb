@@ -33,7 +33,6 @@ RSpec.describe "Users", type: :system do
     end
 
     it "マイページに遷移できる" do
-
       visit members_mypage_path
 
       expect(page).to have_content("ユーザー名")
