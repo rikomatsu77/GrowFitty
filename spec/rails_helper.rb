@@ -9,8 +9,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 # return unless Rails.env.test?
 require "rspec/rails"
 require "factory_bot_rails"
+require "capybara/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
-
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -82,6 +83,17 @@ RSpec.configure do |config|
   config.after(:each, type: :model) do
     OmniAuth.config.test_mode = false
   end
+
+  config.before(:each, type: :system) do
+    driven_by :remote_chrome
+
+    Capybara.server_host = '0.0.0.0'
+    Capybara.server_port = 3001
+
+    Capybara.app_host = "http://web:#{Capybara.server_port}"
+  end
+
+  config.include LoginMacros, type: :system
 end
 
 Shoulda::Matchers.configure do |config|
