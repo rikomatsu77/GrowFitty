@@ -6,7 +6,10 @@
   <!-- ハンバーガーメニュー -->
     <div class="dropdown dropdown-end">
         <div class="flex-none">
-          <button class="btn btn-square btn-ghost text-white hover:bg-[#f7b64d]">
+          <button
+            class="btn btn-square btn-ghost text-white hover:bg-[#f7b64d]"
+            data-testid="hamburger-menu"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -28,7 +31,7 @@
               <%= link_to "マイページ", members_mypage_path %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete } %>
+              <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete, testid: "logout-link" } %>
             </li>
             <li>
               <%= link_to "アプリの使い方（改修中）", "#" %>
