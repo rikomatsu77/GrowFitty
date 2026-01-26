@@ -1,16 +1,42 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="bg-[#FFFCF4] min-h-screen py-8">
+  <div class="flex justify-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold text-center text-[#444] tracking-tight mb-2">
+      パスワード再設定
+    </h2>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+  <div class="w-full max-w-md mx-auto bg-white p-8 rounded-xl shadow">
+    <%= form_for(resource,
+          as: resource_name,
+          url: password_path(resource_name),
+          html: { method: :post }) do |f| %>
 
-<%= render "users/shared/links" %>
+      <%= render "users/shared/error_messages", resource: resource %>
+
+      <!-- メールアドレス -->
+      <div class="field mb-6">
+        <%= f.label :email,
+              "登録済みのメールアドレス",
+              class: "block text-gray-700 font-semibold mb-2" %>
+
+        <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              class: "w-full rounded-xl border border-gray-300 p-3
+                      focus:outline-none focus:ring-2 focus:ring-orange-400" %>
+      </div>
+
+      <!-- 送信ボタン -->
+      <div class="actions flex justify-center">
+        <%= f.submit "パスワード再設定メールを送信",
+              class: "btn border border-[#53CBFA] text-[#53CBFA]
+                      bg-white hover:bg-[#53CBFA]/10
+                      font-semibold px-6 py-2 rounded-lg" %>
+      </div>
+    <% end %>
+
+    <div class="mt-6 text-center">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>
