@@ -13,8 +13,9 @@
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <%= link_to t("devise.shared.links.forgot_your_password"), new_user_password_path(resource_name) %><br />
+  <%= link_to t("devise.shared.links.forgot_your_password"),new_user_password_path,class: "text-blue-500 underline" %><br />
 <% end %>
+
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <%= link_to t("devise.shared.links.didn_t_receive_confirmation_instructions"), new_confirmation_path(resource_name) %><br />
