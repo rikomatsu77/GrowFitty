@@ -1,4 +1,3 @@
-class ApplicationMailer < ActionMailer::Base
-  default from: ENV.fetch("RESEND_FROM_EMAIL")
-  layout "mailer"
+if defined?(Resend::DeliveryMethod)
+  ActionMailer::Base.add_delivery_method :resend, Resend::DeliveryMethod
 end
