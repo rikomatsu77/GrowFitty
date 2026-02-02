@@ -1,3 +1,4 @@
-if defined?(Resend::DeliveryMethod)
-  ActionMailer::Base.add_delivery_method :resend, Resend::DeliveryMethod
+class ApplicationMailer < ActionMailer::Base
+  default from: ENV.fetch('RESEND_FROM_EMAIL', 'no-reply@growfitty.com')
+  layout "mailer"
 end
