@@ -1,4 +1,4 @@
-require 'resend'
+require "resend"
 
 class DeviseMailer < Devise::Mailer
   include Devise::Controllers::UrlHelpers
@@ -22,10 +22,10 @@ class DeviseMailer < Devise::Mailer
   def send_via_resend(to:, subject:, html:)
     # 本番環境でのみ Resend API を呼び出す
     if Rails.env.production?
-      Resend.api_key = ENV['RESEND_API_KEY']
+      Resend.api_key = ENV["RESEND_API_KEY"]
 
       Resend::Emails.send({
-        from: 'noreply@growfitty.com',
+        from: "noreply@growfitty.com",
         to: to,
         subject: subject,
         html: html
