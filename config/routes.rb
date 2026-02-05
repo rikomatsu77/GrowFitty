@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   post "/callback", to: "line_bot#callback"
 
   get "/terms", to: "static_pages#terms"
+  get "/privacy", to: "static_pages#privacy"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
