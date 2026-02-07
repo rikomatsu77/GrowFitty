@@ -14,14 +14,20 @@ ja:
         name: "ニックネーム"
         gender: "性別"
         birthday: "生年月日"
+        user: "ユーザー"
+      child/measurements:
+        measurement_type: "測定タイプ"
+        value: "測定値"
+        measured_on: "測定日"
       measurement:
         measurement_type: "測定タイプ"
-        value: "値"
+        value: "測定値"
         measured_on: "測定日"
       post:
         title: "タイトル"
         body: "本文"
         post_image: "服の写真"
+        user: ""
       comment:
         body: "コメント"
     errors:
@@ -29,29 +35,33 @@ ja:
         user:
           attributes:
             email:
-              blank: "メールアドレスを入力してください"
-              taken: "このメールアドレスはすでに登録されています"
+              blank: "を入力してください"
+              taken: "はすでに登録されています"
             password:
-              blank: "パスワードを入力してください"
-              too_short: "パスワードは%{count}文字以上で入力してください"
+              blank: "を入力してください"
+              too_short: "は%{count}文字以上で入力してください"
         child:
           attributes:
             name:
-              blank: "ニックネームを入力してください"
+              blank: "を入力してください"
             gender:
-              blank: "性別を選択してください"
+              blank: "を選択してください"
             birthday:
-              blank: "生年月日を入力してください"
-              future_date: "生年月日は未来の日付にできません"
+              blank: "を入力してください"
+              future_date: "は未来の日付にできません"
         measurement:
           attributes:
             measurement_type:
-              blank: "測定タイプを選択してください"
+              blank: "を選択してください"
             value:
-              blank: "値を入力してください"
-              not_a_number: "値は数値で入力してください"
+              blank: "を入力してください"
+              not_a_number: "は数値で入力してください"
             measured_on:
-              blank: "測定日を入力してください"
+              blank: "を入力してください"
+        post:
+          attributes:
+            user:
+              required: "ログインしてから投稿してください"
         comment:
           attributes:
             body:
@@ -59,5 +69,6 @@ ja:
             post:
               required: "が必要です"
       messages:
-        blank: "入力してください"
-        not_a_number: "数値で入力してください"
+        blank: "を入力してください"
+        required: "を入力してください"
+        not_a_number: "は数値で入力してください"
