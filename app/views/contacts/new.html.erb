@@ -1,0 +1,25 @@
+<div class="container mx-auto max-w-xs sm:max-w-3xl py-8">
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc3VERTGDfSd1oRQgca3waxBwXwTFsgLhJ7VCdGD34Ed31Gxw/viewform?embedded=true"
+      width="640"
+      height="931"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0">
+      読み込んでいます…
+    </iframe>
+  </div>
+
+  <div class="mt-8 text-center">
+    <p class="text-xs sm:text-sm text-gray-600">
+      お問い合わせフォームが表示されない場合は、
+      <br class="sm:hidden" />
+      <%= link_to "こちらのリンク",
+                  "https://docs.google.com/forms/d/e/1FAIpQLSc3VERTGDfSd1oRQgca3waxBwXwTFsgLhJ7VCdGD34Ed31Gxw/viewform?usp=sf_link",
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                  class: "text-accent hover:underline inline" %>
+      からアクセスしてください。
+    </p>
+  </div>
+</div>
