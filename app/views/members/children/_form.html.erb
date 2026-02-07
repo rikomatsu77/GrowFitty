@@ -5,7 +5,7 @@
         <h2 class="text-lg font-semibold">入力に誤りがあります：</h2>
           <ul class="list-disc list-inside text-left">
             <% @child.errors.full_messages.each do |message| %>
-              <li><%= message.gsub(/Measurements measured on|Measurements value/, "") %></li>
+              <li><%= message %></li>
             <% end %>
           </ul>
       </div>
