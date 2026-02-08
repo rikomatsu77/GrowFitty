@@ -3,6 +3,21 @@
     <%= link_to "GrowFitty", root_path, class: "btn btn-ghost text-xl text-white hover:text-white" %>
   </div>
   <div class="flex-none flex items-center gap-2">
+    <!-- PC向けナビリンク -->
+    <nav class="hidden lg:flex items-center gap-1">
+      <%= link_to "マイページ", members_mypage_path,
+          class: "btn btn-ghost btn-sm text-white hover:bg-[#f7b64d]" %>
+      <%= link_to "投稿作成", new_post_path,
+          class: "btn btn-ghost btn-sm text-white hover:bg-[#f7b64d]" %>
+      <%= link_to "コーディネート一覧", posts_path,
+          class: "btn btn-ghost btn-sm text-white hover:bg-[#f7b64d]" %>
+      <%= link_to "ブックマーク", bookmarks_posts_path,
+          class: "btn btn-ghost btn-sm text-white hover:bg-[#f7b64d]" %>
+      <%= link_to "ログアウト", destroy_user_session_path,
+          data: { turbo_method: :delete },
+          class: "btn btn-ghost btn-sm text-white hover:bg-[#f7b64d]" %>
+    </nav>
+
   <!-- ハンバーガーメニュー -->
     <div class="dropdown dropdown-end">
         <div class="flex-none">
