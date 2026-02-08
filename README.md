@@ -142,17 +142,17 @@ https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=0045027
 3.SNS共有機能
 4.オートコンプリート機能
 5.タグ機能
-6.LINEプッシュ通知
+6.LINE認証・bot機能
 7.Google認証
-8.コメント作成 
-9.コメント編集 
+8.コメント作成
+9.コメント編集
 10.コメント削除
 
 ## ■ 機能の実装方針予定
 
 - 検索機能：gem ransack
 - オートコンプリート機能：Stimulus Autocomplete（Rails7 ）
-- LINEプッシュ通知： LINE Messaging API、LINE Messaging API SDK for Ruby
+- LINE認証・bot機能： LINE Messaging API、LINE Messaging API SDK for Ruby
 
 # 使用技術（予定）
 
@@ -186,4 +186,4 @@ https://www.figma.com/design/nyig3NgC0ol8JWr83RJxCV/GrowFitty?node-id=0-1&t=FM9r
 
 dbdiagram.io：https://dbdiagram.io/d/680d95001ca52373f57f695f
 
-[![Image from Gyazo](https://i.gyazo.com/d711904af86e5e5add4d1501384d4524.png)](https://gyazo.com/d711904af86e5e5add4d1501384d4524)
+[![Image from Gyazo](https://i.gyazo.com/72b2469fa41827d19d97725d58d80b0a.png)](https://gyazo.com/72b2469fa41827d19d97725d58d80b0a)
