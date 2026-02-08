@@ -271,7 +271,8 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"]
+  config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"],
+    callback_url: ENV["GOOGLE_OAUTH_CALLBACK_URL"]
   config.omniauth :line, ENV["LINE_KEY"], ENV["LINE_SECRET"]
 
   # ==> Warden configuration
