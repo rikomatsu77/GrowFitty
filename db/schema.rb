@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_12_09_190027) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_08_101212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "post_id"
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_bookmarks_on_post_id"
@@ -28,16 +28,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_190027) do
     t.bigint "user_id", null: false
     t.string "name", null: false
     t.string "gender", null: false
-    t.datetime "birthday", null: false
+    t.date "birthday", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_children_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "post_id"
-    t.text "body"
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -72,7 +72,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_190027) do
 
   create_table "measurements", force: :cascade do |t|
     t.bigint "child_id", null: false
-    t.datetime "measured_on"
+    t.date "measured_on"
     t.string "measurement_type", null: false
     t.float "value"
     t.float "percentile"
@@ -82,8 +82,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_190027) do
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.bigint "post_id"
-    t.bigint "tag_id"
+    t.bigint "post_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id", "tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
@@ -94,7 +94,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_12_09_190027) do
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "post_image"
