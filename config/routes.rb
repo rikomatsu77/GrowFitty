@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   get "/terms", to: "static_pages#terms"
   get "/privacy", to: "static_pages#privacy"
+  get "/guide", to: "static_pages#guide"
   get "contact", to: "contacts#new"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
