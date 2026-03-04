@@ -202,29 +202,6 @@ https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=0045027
 | 外部API | LINE Messaging API |
 | SEO・分析 | meta-tags / Google Analytics (GA4) |
 
-# 使用技術（予定）
-
-- 開発環境
-
-　Docker
-
-- フロントエンド
-
-　HTML、JavaScript、Tailwind CSS
-
-- バックエンド
-
-　Ruby、Ruby on Rails７系
-
-- インフラ
-
-　・Webアプリケーションサーバ：Render.com
-
-　・データベースサーバ：PostgreSQL
-
-- 認証
-
-　gem devise、Google認証
 
 ## 画面遷移図
 
