@@ -2,6 +2,10 @@
 
 　ー子供服サイズ予測で、成長をもっと楽しく！ー
 
+## アプリ URL
+
+https://growfitty.com/
+
 ## ■サービス概要
 
 幼児の成長段階に応じて服のサイズを提案するサービスです。
@@ -9,6 +13,32 @@
 幼児の生年月日・体重・身長・性別等を管理し、先季節でのサイズを確認できます。
 
 コーディネートの投稿・コメント・いいね・気に入ったコーディネートをブックマークできます。
+
+## 主な機能
+
+### サイズ予測機能
+
+子どもの生年月日・身長・体重をもとに、厚生労働省の成長曲線（パーセンタイル）データを参照して将来の服サイズを自動予測します。現在の季節から最大1年先まで、季節ごと（春・夏・秋・冬）のサイズ変化を一覧で確認できます。
+
+### 子どもプロフィール管理
+
+複数の子どもの情報を一括管理できます。健診等で最新の計測データを入力するだけで、予測が自動的に再計算されます。
+
+### コーディネート投稿・コミュニティ
+
+写真付きでコーディネートを投稿・共有できます。タグ付け・キーワード検索に対応しており、コメント・ブックマーク機能でユーザー同士の交流もできます。
+
+### LINE Bot 連携
+
+LINEのトーク画面から対話形式でサイズ予測が利用可能です。外出先のお店でも手軽にサイズを確認できます。
+
+### ソーシャルログイン・ゲストモード
+
+Google・LINEアカウントでワンクリックログインが可能です。ゲストモードなら会員登録なしでもサイズ予測を体験できます。
+
+### PWA 対応
+
+スマートフォンのホーム画面に追加して、ネイティブアプリのように利用できます。
 
 ## ■ このサービスへの思い・作りたい理由
 
@@ -153,6 +183,24 @@ https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&toukei=0045027
 - 検索機能：gem ransack
 - オートコンプリート機能：Stimulus Autocomplete（Rails7 ）
 - LINE認証・bot機能： LINE Messaging API、LINE Messaging API SDK for Ruby
+
+## 技術スタック
+
+| カテゴリ | 技術 |
+|---------|------|
+| バックエンド | Ruby 3.3.6 / Ruby on Rails 7.2.1 |
+| フロントエンド | Hotwire (Turbo + Stimulus) / Tailwind CSS 4.1.5 / DaisyUI 5.0.35 |
+| データベース | PostgreSQL |
+| 認証 | Devise / OmniAuth (Google OAuth2, LINE Login) |
+| ファイルストレージ | AWS S3 (CarrierWave) |
+| メール配信 | Resend |
+| 検索 | Ransack |
+| ページネーション | Kaminari |
+| テスト | RSpec / Capybara / Selenium WebDriver / FactoryBot |
+| CI/CD | GitHub Actions (RSpec / RuboCop / Brakeman) |
+| インフラ | Docker / Render.com |
+| 外部API | LINE Messaging API |
+| SEO・分析 | meta-tags / Google Analytics (GA4) |
 
 # 使用技術（予定）
 
