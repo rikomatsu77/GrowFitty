@@ -55,7 +55,7 @@ gem "kaminari"
 
 gem "ransack"
 
-gem "line-bot-api", "~> 1.30"
+gem "line-bot-api", "~> 2.6"
 
 gem "resend"
 
